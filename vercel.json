@@ -4,6 +4,14 @@
       {
         "src": "server.js",
         "use": "@vercel/node"
+      },
+      {
+        "src": "views/**/*.ejs",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "public/**/*",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
@@ -11,6 +19,10 @@
         "src": "/(.*)",
         "dest": "server.js"
       }
+    ],
+    "includeFiles": [
+      "views/**/*",
+      "public/**/*"
     ]
   }
   

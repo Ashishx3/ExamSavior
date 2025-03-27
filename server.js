@@ -36,17 +36,6 @@ app.use(express.urlencoded({ extended: true }));
     saveUninitialized: true,
     cookie: { secure: process.env.NODE_ENV === 'production' } 
 }));
-
-
-fs.readdir(viewsPath, (err, files) => {
-    if (err) {
-      console.error("Error reading views directory:", err);
-    } else {
-      console.log("Files in views directory:", files);
-    }
-  });
-
-
 // for original database when deployed 
 
 require('dotenv').config();
