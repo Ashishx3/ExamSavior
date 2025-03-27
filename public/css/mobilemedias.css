@@ -1,0 +1,219 @@
+@media (max-width: 768px) {
+  .slidertv,
+  .pop,
+  .tvframe,
+  .nut,
+  .c,
+  .ci img,
+  .ch,
+  .label {
+    display: none;
+}
+.activewhen768ok{
+  display: flex;
+}
+}
+
+
+
+/* 460 */
+@media (max-width: 768px) {
+
+  nav {
+    height: 50px; /* Make nav bar smaller */
+    padding: 5px 10px; /* Reduce padding */
+  }
+
+  nav a {
+    font-size: 12px; /* Make text smaller */
+    padding: 4px 6px; /* Reduce padding */
+  }
+
+  .nav-logo {
+    width: 25px; /* Reduce logo size */
+  }
+
+  nav div {
+    margin-right: 5px; /* Reduce right margin */
+  }
+
+  .spannn {
+    padding-left: 5px; /* Reduce spacing */
+  }
+  .switch {
+    width: 40px;
+    height: 23px;
+    margin-left: 4px;
+  }
+
+    .slider {
+      width: 40px; /* Reduce width */
+      height: 24px; /* Reduce height */
+    }
+  
+    .slider:before {
+      width: 18px; /* Reduce toggle size */
+      height: 18px;
+      bottom: 3px;
+      left: 2px;
+    }
+  
+    .sun svg {
+      width: 14px; /* Reduce icon size */
+      height: 14px;
+      top: 5px;
+      left: 23px; /* Adjust position */
+    }
+  
+    .moon svg {
+      width: 14px;
+      height: 14px;
+      top: 4px;
+      left: 3px; /* Adjust position */
+    }
+  
+    .switch input:checked + .slider:before {
+      transform: translateX(18px); /* Adjust for smaller size */
+    }
+}
+/* /////////////////////////////////////////////////////////// */
+/* welcome notes */
+/* Medium Screens (Tablets) */
+
+@media (max-width: 768px) {
+  #facilities-container3 {
+    display: none;
+  }
+  .tts {
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Keep items centered horizontally */
+    /* height: auto;
+     Adjust height so content stays at the top */
+    padding-top: 20px; /* Add some space from the top */
+  }
+        
+  }
+  
+  /* Small Screens (Mobile Phones) */
+  @media (max-width: 480px) {
+    .card{
+      width: 80%; /* Can be removed if you want flexible resizing */
+      height: 100px;
+      border-radius: 12px;
+    }
+    .branches{
+      row-gap: 23px;
+    }
+    .choose-branch p{
+      font-size: 23px;
+    }
+    .facilities p{
+      font-family: "Inter", serif;
+      font-size: 25px;
+      font-optical-sizing: auto;
+
+    }
+    .card p:first-child {
+      font-size: 15px;
+      font-weight: 600;
+  }
+
+  }
+
+  @media (max-width: 480px) {
+    .units {
+        flex-wrap: nowrap; /* Prevent wrapping */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        justify-content: flex-start; /* Align units to the start */
+        padding: 10px; /* Add padding for better spacing */
+        gap: 5px; /* Reduce gap for smaller screens */
+    }
+
+    .unit {
+        flex: 0 0 auto; /* Prevent shrinking */
+        white-space: nowrap; /* Ensure text doesn’t break */
+        min-width: 80px; /* Set a minimum width for better visibility */
+    }
+}
+  /* ///////////////////////////cardss      of other featuresz */
+
+
+  @media (max-width: 768px) {
+    .cardcontainer {
+      flex: 0 0 80%; /* Take 80% width on smaller screens */
+      width: auto; /* Allow flexible resizing */
+    }
+    
+    .unit {
+      width: 100%; /* Make buttons full width */
+      text-align: center;
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    .cardcontainer {
+      flex: 0 0 80%; /* Make it take 80% of the screen */
+      width: auto; 
+      height: auto; /* Adjust height automatically */
+      padding: 10px; /* Add some padding */
+    }
+  
+    .units {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
+      gap: 7px; /* Space between buttons */
+      justify-content: center; /* Center the buttons */
+      padding: 8px 10px; /* Prevent sticking to page edges */
+    }
+  
+    /* Adjust the last two buttons to center */
+    .unit:nth-child(4),
+    .unit:nth-child(5) {
+      grid-column: span 1; /* Make each take one column */
+      justify-self: center; /* Center align them */
+    }
+  
+    .unit {
+      background-color: rgb(130, 117, 227);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      text-align: center;
+    }
+  
+    .unit:hover {
+      cursor: pointer;
+      background: rgb(112, 97, 226);
+      transform: scale(1.1);
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+  
+

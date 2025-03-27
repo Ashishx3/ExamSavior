@@ -1,0 +1,128 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Text-to-Speech (TTS) Converter | AI Voice Generator</title>
+    <meta name="description" content="A modern, stylish, and responsive Text-to-Speech (TTS) Converter. Type text and hear it spoken aloud with different voices.">
+<meta name="keywords" content="Text to Speech, TTS, Voice Converter, Speech Synthesis, Online TTS, Speak Text">
+<meta name="author" content="Exam Savior">
+
+<!-- Open Graph (for Social Media Sharing) -->
+<meta property="og:title" content="Text-to-Speech (TTS) Converter">
+<meta property="og:description" content="Convert text to speech easily with a stylish, responsive TTS converter. Supports multiple voices!">
+<meta property="og:image" content="https://yourwebsite.com/preview-image.jpg">
+<meta property="og:url" content="https://yourwebsite.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text-to-Speech (TTS) Converter">
+<meta name="twitter:description" content="Convert text into speech instantly with multiple voice options.">
+<meta name="twitter:image" content="https://yourwebsite.com/preview-image.jpg">
+
+
+<link rel="icon" type="image/png" href="/images/EXAM SAVIOR (2).png  ">
+
+    <link rel="stylesheet" href="/css/tts-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+           
+        }
+        select, textarea, button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('backbutton') %>
+   <div class="container">
+    <h2>Text to Speech <h4 style="color: rgb(0, 126, 168);">by examsavior</h4></h2>
+
+    <textarea id="textInput" rows="4" cols="50" placeholder="Enter text..."></textarea>
+    <br>
+
+    <label for="voiceSelect">Select Voice:</label>
+    <select id="voiceSelect">
+        <option value="oPM3trUCF4e0vTcsrMQr">Default Voice</option>
+        <option value="X0Kc6dUd5Kws5uwEyOnL">Male Voice</option>
+        <option value="Sm1seazb4gs7RSlUVw7c">Female Voice</option>
+    </select>
+    <br>
+
+    <button onclick="generateTTS()">Generate</button>
+    <button onclick="downloadTTS()" disabled id="downloadBtn">Download</button>
+
+    <br><br>
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+   </div>
+
+    <script>
+        let generatedAudioUrl = "";
+
+        async function generateTTS() {
+            const text = document.getElementById("textInput").value;
+            const voiceId = document.getElementById("voiceSelect").value;
+            const audioPlayer = document.getElementById("audioPlayer");
+            const generateButton = document.querySelector("button");
+            const downloadButton = document.getElementById("downloadBtn");
+
+            if (!text) {
+                alert("Please enter some text.");
+                return;
+            }
+
+            // Disable buttons while processing
+            generateButton.textContent = "Generating...";
+            generateButton.disabled = true;
+            downloadButton.disabled = true;
+
+            try {
+                const response = await fetch("/tts/generate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text, voiceId })
+                });
+
+                if (!response.ok) throw new Error("Failed to generate speech");
+
+                // Play audio from the stream
+                const audioBlob = await response.blob();
+                generatedAudioUrl = URL.createObjectURL(audioBlob);
+                audioPlayer.src = generatedAudioUrl;
+                audioPlayer.style.display = "block";
+                audioPlayer.play();
+
+                // Enable download button
+                downloadButton.disabled = false;
+            } catch (error) {
+                alert("Error generating speech. Please try again.");
+                console.error(error);
+            } finally {
+                generateButton.textContent = "Generate";
+                generateButton.disabled = false;
+            }
+        }
+
+        function downloadTTS() {
+            if (!generatedAudioUrl) return;
+
+            const link = document.createElement("a");
+            link.href = generatedAudioUrl;
+            link.download = "generated_speech.mp3";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

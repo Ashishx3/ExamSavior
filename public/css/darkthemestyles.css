@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+:root {
+  --black-sidebar-darktheme: rgb(0,0,0);
+  --nav-bg-lightback: rgb(27, 28, 28);
+  --darkcolor-forcards: rgb(42, 46, 46);
+  --dark-bg: rgb(18 36 43);
+  --blue-on-darktheme: rgb(104 204 236);
+  --dark-body: #1e1e1e;
+  --greytext: rgb(107 114 128);
+}
+
+/* Dark Theme Styles */
+.dark-theme #yearMessage{
+  color: var(--blue-on-darktheme);
+}
+.dark-theme nav {
+  background-color: var(--nav-bg-lightback);
+}
+.dark-theme {
+  background-color: var(--dark-body);
+}
+.dark-theme a, .specialwel{
+  color: var(--blue-on-darktheme);
+}
+.dark-theme .wel{
+  color: var(--light-bg);
+}
+.dark-theme .gt{
+  color: var(--light-bg);
+}
+.dark-theme .dark-theme-choose-branch-content {
+  color: var(--light-bg);
+}
+.dark-theme hr {
+  border-color: var(--blue-on-darktheme);
+}
+.dark-theme .card {
+  color: var(--light-bg);
+}
+.dark-theme .card p:last-child {
+  color: var(--blue-on-darktheme);
+}
+.dark-theme .card {
+  background-color: var(--darkcolor-forcards);
+ }
+
+.dark-theme .main2 {
+  background-color: var(--dark-body);
+}
+.dark-theme .branches {
+  background-color: var(--dark-body);
+}
+.dark-theme .blackafterdark {
+  color: white;
+  text-shadow:
+      1px 1px 0 rgb(0, 0, 0),
+      -1px -1px 0 rgb(0, 0, 0),
+      1px -1px 0 rgb(0, 0, 0),
+      -1px 1px 0 rgb(0, 0, 0);
+} 
+.dark-theme .aids-head-content{
+    color: var(--blue-on-darktheme);
+  } 
+
+.dark-theme .facilities p {
+  color: var(--blue-on-darktheme);
+}
+
+.dark-theme .threedivs button:hover {
+  background: var(--blue-on-darktheme);
+  color: white;
+  cursor: pointer;
+}
+.dark-theme .threedivs {
+  width: 18em;
+  height: 25em;
+  border: 1px solid #2a2e2e; 
+  background: #171717;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures the button stays at the bottom */
+}
+
+.dark-theme .threedivs span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.dark-theme .threedivs .info {
+  font-weight: 400;
+  color: var(--greytext);
+  display: block;
+  text-align: center;
+  font-size: 0.92em;
+  margin: 1em;
+}
+.dark-theme .threedivcontainer{
+  background: none;
+}
+
+.dark-theme .threedivs .imaig {
+  width: 4.8em;
+  height: 4.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.dark-theme .threedivs .share {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+ gap: 1em; 
+}
+
+
+.dark-theme .bthh {
+  padding: 0.8em 1.7em;
+  display: block;   
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  margin-bottom: 15px;
+  font-weight: bold;
+  background: #696b6c;
+
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+
+}
+.dark-theme .bthh:hover{
+  color: rgb(34, 19, 19);
+  outline:  2px solid black;
+  
+}
+.dark-theme .threedivcontainer{
+ background-color: #2a2e2e;
+  border: 2px solid #2a2e2e;
+}
+
+.dark-theme .footercontainer{
+    border-top: 3px solid var(--blue-on-darktheme);  
+  background-color: var(--nav-bg-lightback);
+  color: white;
+}
+.dark-theme .madebyashish{
+  background-color: #121212;
+}
+.dark-theme .cardcontainer {
+  color: white;
+  background-color: #253142 ;
+}
+.dark-theme .unit{
+  background-color: rgb(112, 97, 226); ;
+  color: white;
+  opacity: 1;
+/* //rgb(126 34 206) */
+}
+.dark-theme .unit:hover{
+  /* opacity: 100%; */
+  cursor: pointer;
+  background-color:  rgb(106, 89, 237);
+  
+}
+.dark-theme .o2{
+  color: white;
+}
+
+.dark-theme .parallax {
+  
+  background: url('/images/o21.png') no-repeat center center fixed;
+} 

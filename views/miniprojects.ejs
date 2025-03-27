@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projects - Exam Savior | Student Tools & Learning Resources</title>
+
+    <!-- Basic Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore a collection of mini projects on Exam Savior, a service designed to help students with useful tools and resources.">
+<meta name="keywords" content="Exam Savior, Mini Projects, Student Tools, Learning Resources, Educational Projects">
+<meta name="author" content="Exam Savior">
+
+<!-- Open Graph (for Social Media Sharing) -->
+<meta property="og:title" content="Mini Projects - Exam Savior">
+<meta property="og:description" content="Discover mini projects and useful learning resources on Exam Savior.">
+<meta property="og:image" content="https://yourwebsite.com/preview-image.jpg">
+<meta property="og:url" content="https://yourwebsite.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mini Projects - Exam Savior">
+<meta name="twitter:description" content="Find mini projects and educational tools on Exam Savior.">
+<meta name="twitter:image" content="https://yourwebsite.com/preview-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="images/EXAM SAVIOR (2).png  ">  
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+        :root {
+  /* Light Theme Variables */
+  --light-text-orange: rgb(197, 190, 189);
+  --light-bg: rgb(252, 252, 252); /* Background color for light theme */
+  --light-text: rgb(31, 41, 55); /* Text color for light theme */
+  /* --light-body: #f4f4f4; /* Body color for light theme 
+  --light-button: #007bff; Button color for light theme */
+
+  --black-sidebar-darktheme: rgb(0, 0, 0);
+  --nav-bg-lightback: rgb(27, 28, 28);
+  --darkcolor-forcards: rgb(42, 46, 46);
+  --dark-bg: rgb(18 36 43); /* Background color for dark theme */
+  --blue-on-darktheme: rgb(104 204 236); /* Text color for dark theme */
+   --dark-body: #1e1e1e;
+  --dark-button: #1a73e8; 
+}
+        body {
+            overflow-y: hidden;
+            font-family: "Inter", Arial, sans-serif;
+            background-color: #181818;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* LEFT SECTION - PROJECTS */
+        .left-container {
+            height: 100%;
+            width: 55%;
+            padding: 20px 40px 0px 40px; /* Moves it a little towards center */
+        }
+
+        .heading {
+            width: 84%;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--blue-on-darktheme);
+            margin-bottom: 20px;
+        }
+        .projects-container {
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(85vh - 15px);
+    width: 45vw;
+    gap: 15px;
+    justify-content: flex-start; /* Slightly left-aligned */
+    padding-right: 10px; /* Prevents content from being hidden by scrollbar */
+}
+
+/* Custom Scrollbar */
+.projects-container::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.projects-container:hover::-webkit-scrollbar {
+    opacity: 1;
+}
+.projects-container::-webkit-scrollbar-track {
+    background: #001925; /* Dark background */
+    border-radius: 10px;
+}
+
+.projects-container::-webkit-scrollbar-thumb {
+    background: var(--dark-button); /* Orange thumb */
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.projects-container::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-button); /* Lighter orange when hovered */
+}
+
+
+        .project {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            background-color: #282828;
+            border-radius: 10px;
+            padding: 15px;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .project:hover {
+            transform: scale(1.02);
+        }
+
+        .project-thumbnail {
+            width: 100px;
+            height: 70px;
+            background-color: #404040;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .project-thumbnail img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* background-color: #404040; */
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .project-info {
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--blue-on-darktheme);
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .view-btn {
+            padding: 8px 12px;
+            background-color: var(--dark-button);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .view-btn:hover {
+            background-color: var(--blue-on-darktheme);
+        }
+
+        /* RIGHT SECTION - DETAILS VIEW */
+        .view-container {
+            width: 45%;
+            background-color: #282828;
+            padding: 20px;
+            border-left: 3px solid var(--blue-on-darktheme);
+            position: absolute;
+            right: 0;
+            top: 20px; /* Starts 20px from top */
+            /* height: 85vh; */
+            height: calc(85vh - 10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .view-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--blue-on-darktheme);
+            margin-bottom: 10px;
+        }
+
+        .view-content {
+            font-size: 16px;
+            color: #ddd;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+    }
+    .heading{
+        width: 100%;
+        
+    }
+
+    .left-container {
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+        padding: 20px;
+        height: 65Vh;
+        padding-top: 39px;
+        justify-content: center;
+        align-items: center;
+        padding-right: 0px;
+    }
+
+    .projects-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .project {
+        width: 100%;
+    }
+
+    .view-container {
+        width: 100%;
+        position: relative;
+        top: unset;
+        right: unset;
+        height: auto;
+        padding: 20px;
+        margin-top: 20px;
+        border-left: none;
+        border-top: 3px solid var(--blue-on-darktheme);
+    }
+}
+
+@media (max-width: 460px) {
+    .heading {
+        font-size: 22px;
+    }
+
+    .project-title {
+        font-size: 18px;
+    }
+
+    .view-title {
+        font-size: 20px;
+    }
+
+    .view-content {
+        font-size: 14px;
+    }
+
+    .view-btn {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+.view-content{
+    padding: 5pc;
+    overflow-y: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 400;
+    color: white;
+}
+
+
+    </style>
+</head>
+<body>
+    <%- include('backbutton') %>
+    <!-- LEFT SIDE: PROJECT LIST -->
+    <div class="left-container">
+        <div class="heading">Mini Projects</div>
+        <div class="projects-container">
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/hg.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Hangman Game in C</div>
+                    <div class="project-description">Click on view to see it.</div>
+                </div>
+                <button class="view-btn" onclick="showDetails('Hangman Game in C', '')">View</button>
+            </div>
+
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/sc.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Simple Calculator
+                    </div>
+                    <div class="project-description">Click on view to see it.</div>
+                </div>
+                <button class="view-btn" onclick="showDetails('Simple Calculator', '')">View</button>
+            </div>
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/sl.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Snakes and Ladder Game</div>
+                    <div class="project-description">Click on view to see it.</div>
+                </div>
+                <button class="view-btn" onclick="showDetails('Snakes and Ladder Game', 'This is the detailed description of Project 2.')">View</button>
+            </div>
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/hp.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Hospital Management System</div>
+                    <div class="project-description">Click on view to see it.</div>
+</div>
+<button class="view-btn" 
+    onclick="showDetails('Hospital Management System', 'The Hospital Management System is an application that allows hospitals to maintain and manage all essential data, including patient records, available beds, pricing, and more. Using the C language, we can design an application that efficiently organizes hospital-related information by leveraging key C concepts such as strings, structures (structs), etc. \n\nFunctionality of the Hospital Management System:\n- Print hospital data\n- Print patient data\n- Sort by bed price\n- Sort by available beds\n- Sort by name\n- Sort by rating and reviews\n- Print hospitals in a specific city')">
+    View
+</button>
+
+            </div>
+
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/quiz.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Quiz Game</div>
+                    <div class="project-description">Click on view to see it.</div>
+                </div>
+                <button class="view-btn" onclick="showDetails('Quiz Game', 'This is the detailed description of Project 3.')">View</button>
+            </div>
+
+            <div class="project">
+                <div class="project-thumbnail"><img src="/images/tt.webp" alt=""></div>
+                <div class="project-info">
+                    <div class="project-title">Tic-tac-toe Game</div>
+                    <div class="project-description">Click on view to see it.</div>
+                </div>
+                <button class="view-btn" onclick="showDetails('Tic-tac-toe Game', 'The Functionality of the Tic-Tac-Toe Game:\n\n- The game is played between two players.\n- One player chooses ‘O’, and the other chooses ‘X’ to mark their respective cells.\n- The game starts with one player and continues until:\n  - A player wins by filling an entire row, column, or diagonal with their symbol (‘O’ or ‘X’).\n  - If no player wins, the game ends in a draw.')">View</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE: DETAILS VIEW -->
+    <div class="view-container" id="viewDiv">
+        <div class="view-title" id="viewTitle">Select a project</div>
+        <div class="view-content" id="viewContent">Click on "View" to see details.</div>
+    </div>
+
+    
+
+    <script>
+        function showDetails(title, content) {
+            document.getElementById("viewTitle").innerText = title;
+            document.getElementById("viewContent").innerText = content;
+            document.getElementById("viewDiv").style.justifyContent = "unset"; 
+
+        
+        
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+/* Dropdown (Services) Styles */
+/* Initially hide the nested dropdown menu */
+nav div ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: none;
+    background: white;
+    padding: 0;
+    margin: 0;
+        position: absolute;
+        min-width: 200px; /* Adjust width if needed */
+        box-shadow: 0px 3px 5px -1px #ccc;
+        z-index: 9999; 
+  }
+  
+  /* Show dropdown on hover */
+  nav div ul li:hover > ul,
+  nav div ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    display: block;
+    min-width: 250px;
+    text-align: left;
+    padding-top: 20px;
+    box-shadow: 0px 3px 5px -1px #ccc;
+  }
+  
+  /* Dropdown items */
+  nav div ul li ul li {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+    list-style: none;
+    border: none;
+  }
+  
+  /* Dropdown link transition */
+  nav div ul li ul li a {
+    transition: all 0.5s ease;
+  }
+  
+  nav div ul li ul li a:hover {
+    padding-left: 10px;
+    border-left: 2px solid #3ca0e7;
+    transition: all 0.3s ease;
+  }
+  

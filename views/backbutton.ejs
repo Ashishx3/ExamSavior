@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>button ejs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .ss {
+    position: absolute; /* Ensures it stays fixed relative to the page */
+    top: 10px; /* Aligns to the top */
+    left: 10px; /* Aligns to the left */
+    width: auto; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+}
+
+.ssbtn{
+    cursor: pointer;
+    background-color: #c6c6c6;
+    border-radius: 50px;
+    border: #555;
+    height: 40px;
+    width: 40px;
+}
+.ssbtn:hover{
+    background-color: rgb(111, 111, 111);
+}
+.ssbtn a:hover{
+    color: white;
+}
+.ssbtn a {
+    text-decoration: none;
+    color: black;
+}
+    </style>
+</head>
+<body>
+    <div class="ss">
+        <button class="ssbtn" title="Back to Home" >
+            <a href="/mainindexpage" class="back-arrow">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </button>
+        
+    </div>
+</body>
+</html>

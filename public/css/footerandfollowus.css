@@ -1,0 +1,205 @@
+/* Large Screen */
+.ttscon2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.spancont {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    margin-right: 35px;
+}
+
+.spancont:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.designed-by {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    padding-top: 2px;
+}
+
+
+.footercontainer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72px; 
+    background-color: #ededed;
+    border-top: 3px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0px;
+    z-index: 1000; 
+    position: relative;
+    flex-wrap: wrap; /* Allow wrapping for mobile */
+}
+.madebyashish{
+    font-size: 10px;
+    height: auto;
+    width: 100%;
+    background-color: var(--dark-body) ;
+    color: var(--blue-on-darktheme) ;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    padding: 1px;
+    padding: 5px 0; /* Adjust padding */
+    text-align: center;
+}
+.social-container {
+    text-align: center;
+}
+
+.social-icons {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-icons li {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.social-icons i {
+    font-size: 1.2em;
+    color: #fff;
+    transition: all 0.3s ease-out;
+    z-index: 2;
+}
+
+.social-icons a:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #007BFF, rgb(104 204 236));
+    transition: all 0.3s ease-out;
+}
+
+.social-icons a:hover:before {
+    transform: scale(0);
+}
+
+.social-icons a:hover i {
+    transform: scale(1.5);
+    color: #ff003c;
+    background: linear-gradient(45deg, #ff003c, #c648c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Square Icons */
+.social-icons a.social-square {
+    border-radius: 10%;
+}
+
+.social-icons a.social-square:before {
+    background: linear-gradient(45deg, #7b00e0, #ae31d9);
+}
+
+.social-icons a.social-square:hover:before {
+    transform: rotate(-180deg);
+    border-radius: 50%;
+}
+
+.social-icons a.social-square:hover i {
+    transform: scale(1.3);
+    color: #fff;
+}
+
+/* Mobile/Small Screen Adjustments */
+@media screen and (max-width: 768px) {
+    .contactd, .followd{
+        display: none;
+    }
+
+    .footercontainer {
+        flex-direction: column; /* Stack the content vertically */
+        height: 72px; /* Adjust height for better layout */
+        padding: 16px;
+    }
+
+    .social-container {
+        margin-top: 10px;
+    }
+
+    .social-icons {
+        flex-wrap: wrap; /* Allow social icons to wrap to next line */
+        justify-content: center;
+    }
+
+    .social-icons li {
+        width: 40px; /* Smaller icons for mobile */
+        height: 40px;
+    }
+
+    .footercontainer > * {
+        margin-bottom: 6px; /* Spacing between elements */
+    }
+
+    /* Adjust copyright section */
+    .copyright-section {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Separate copyright and other content */
+    .footercontainer .copyright-section {
+        order: 1; /* Ensure copyright comes first */
+    }
+
+    .footercontainer .other-content {
+        order: 2; /* Move the rest of the elements down */
+    }
+}
+
+/* Extra Small Devices (for portrait mode on mobile) */
+@media screen and (max-width: 480px) {
+    .footercontainer {
+        padding: 12px;
+        height: auto;
+    }
+
+    .social-icons li {
+        width: 35px;
+        height: 35px;
+    }
+
+    .spancont {
+        margin-right: 20px; /* Adjust margin for smaller screens */
+    }
+}
