@@ -19,7 +19,7 @@ const { ElevenLabsClient } = require("elevenlabs");
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(cookieParser());
 app.use(checkAuthStatus);
@@ -34,7 +34,12 @@ app.use(express.urlencoded({ extended: true }));
     secret: process.env.SESSION_SECRET || 'defaultSecretKey', // ✅ Corrected
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' } 
+    // cookie: { secure: false },
+    cookie: { 
+        secure: process.env.NODE_ENV === 'production', // Secure in production
+        httpOnly: true, // Protect against XSS
+        sameSite: 'strict' // Prevent CSRF
+    }
 }));
 // for original database when deployed 
 
@@ -90,11 +95,11 @@ app.use("/miniprojects", restrictToLoggedinUserOnly, miniprojectsRoute);
 //  ✅ Start server
 
 
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(port, () => {
-        console.log(`🚀 Server running at http://localhost:${port}`);
-    });
-}
+// if (process.env.NODE_ENV !== 'production') {
+//     app.listen(port, () => {
+//         console.log(`🚀 Server running at http://localhost:${port}`);
+//     });
+// }
 // app.listen(port, () => {
 //     console.log(`Server running at http://localhost:${port}`);
 // });

@@ -1,5 +1,5 @@
 //dark theme logic
-
+console.log("script loaded successfully!")
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const toggleCheckbox = document.querySelector("#theme-toggle input");

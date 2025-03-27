@@ -1,3 +1,5 @@
+console.log("content script loaded successfully!")
+
 const firstYearContent = {
   aids: [
     { 
