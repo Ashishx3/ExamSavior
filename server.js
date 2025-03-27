@@ -19,7 +19,7 @@ const { ElevenLabsClient } = require("elevenlabs");
 
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(checkAuthStatus);
@@ -43,26 +43,17 @@ app.use(express.urlencoded({ extended: true }));
 
 }));
 
+// for original database when deployed 
 
-app.get("/connect-db", async (req, res) => {
-    try {
-      const response = await axios.get(`${process.env.VERCEL_URL}/api/connect`);
-      res.json(response.data);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to connect to MongoDB" });
-    }
-  });
-// // for original database when deployed 
-
-// require('dotenv').config();
-// mongoose.connect(process.env.MONGO_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }).then(() => {
-//     console.log("Connected to MongoDB (Database: userdata)");
-// }).catch(err => {
-//     console.error("MongoDB connection error:", err);
-// });
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to MongoDB (Database: userdata)");
+}).catch(err => {
+    console.error("MongoDB connection error:", err);
+});
 
 //for llocal use tihs 
 
