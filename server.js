@@ -66,7 +66,9 @@ mongoose.connect(process.env.MONGO_URI, {
 // });
 
 // ✅ Set view engine
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 // ✅ Serve static files
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
 
