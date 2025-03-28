@@ -44,7 +44,7 @@ async function handleUserSignup(req, res) {
     await User.create({ name, email, password });
     
     console.log("Signup successful for:", email);
-    return res.redirect("/login");  // Redirect to login after signup
+    return res.redirect("/");  // Redirect to login after signup
   } catch (error) {
     console.error("Signup error:", error);
     return res.render("signup", { error: "Something went wrong! Please try again." });
