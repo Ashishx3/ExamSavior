@@ -72,7 +72,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // ✅ Serve static files
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
