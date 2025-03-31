@@ -8,7 +8,7 @@ const staticRoutes = require('./routes/staticRoutes');
 const cookieParser = require('cookie-parser'); // ✅ Correct import
 const { restrictToLoggedinUserOnly } = require('./middlewares/auth');
 const session = require('express-session');
-
+const connectToDatabase = require('./config/db');
 
 
 const ttsRoute = require("./routes/tts"); // Uncomment if you have this file
@@ -43,29 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 
 }));
 
-// for original database when deployed 
-
-require('dotenv').config();
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Connected to MongoDB (Database: userdata)");
-}).catch(err => {
-    console.error("MongoDB connection error:", err);
-});
-
-//for llocal use tihs 
-
-// // ✅ Connect to MongoDB
-// mongoose.connect("mongodb://localhost:27017/user", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }).then(() => {
-//     console.log("Connected to MongoDB");
-// }).catch(err => {
-//     console.error("MongoDB connection error:", err);
-// });
+connectToDatabase();   
 
 // ✅ Set view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -74,7 +52,6 @@ app.set('view engine', 'ejs');
 // ✅ Serve static files
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
-// app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -90,23 +67,6 @@ app.use("/tts", restrictToLoggedinUserOnly, ttsRoute);
 app.use("/lastyear", restrictToLoggedinUserOnly, lastyearRoute);
 app.use("/miniprojects", restrictToLoggedinUserOnly, miniprojectsRoute);
 
-// Pass auth status to views 
-
-
-
-
-//
-//  ✅ Start server
-
-
-// if (process.env.NODE_ENV !== 'production') {
-//     app.listen(port, () => {
-//         console.log(`🚀 Server running at http://localhost:${port}`);
-//     });
-// }
-// app.listen(port, () => {
-//     console.log(`Server running at http://localhost:${port}`);
-// });
 
 module.exports = app;
 
