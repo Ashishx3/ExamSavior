@@ -8,7 +8,7 @@ const staticRoutes = require('./routes/staticRoutes');
 const cookieParser = require('cookie-parser'); // ✅ Correct import
 const { restrictToLoggedinUserOnly } = require('./middlewares/auth');
 const session = require('express-session');
-const connectToDatabase = require('./config/db');
+const MongoStore = require('connect-mongo');
 
 
 const ttsRoute = require("./routes/tts"); // Uncomment if you have this file
@@ -31,19 +31,30 @@ app.use(express.urlencoded({ extended: true }));
 
  // Import express-session
  app.use(session({
-    secret: process.env.SESSION_SECRET || 'defaultSecretKey', // ✅ Corrected
+    secret: process.env.SESSION_SECRET || 'defaultSecretKey',
     resave: false,
     saveUninitialized: true,
-    // cookie: { secure: false },
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI, // ✅ Store sessions in MongoDB
+        ttl: 14 * 24 * 60 * 60, // ✅ Sessions expire in 14 days
+    }),
     cookie: { 
         secure: process.env.NODE_ENV === 'production', // Secure in production
-        httpOnly: true, // Protect against XSS
-        sameSite: 'strict' // Prevent CSRF
+        httpOnly: true, // Prevent XSS attacks
+        sameSite: 'strict' // Prevent CSRF attacks
     }
-
 }));
 
-connectToDatabase();   
+
+// for original database when deployed 
+
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log("Connected to MongoDB (Database: userdata)");
+}).catch(err => {
+    console.error("MongoDB connection error:", err);
+});
+
 
 // ✅ Set view engine
 app.set('views', path.join(__dirname, 'views'));

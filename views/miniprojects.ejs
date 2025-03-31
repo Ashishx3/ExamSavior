@@ -369,5 +369,18 @@
 
     </script>
 
+<!-- 
+//  app.use(session({
+//     secret: process.env.SESSION_SECRET || 'defaultSecretKey', // ✅ Corrected
+//     resave: false,
+//     saveUninitialized: true,
+//     // cookie: { secure: false },
+//     cookie: { 
+//         secure: process.env.NODE_ENV === 'production', // Secure in production
+//         httpOnly: true, // Protect against XSS
+//         sameSite: 'strict' // Prevent CSRF
+//     }
+
+// })); -->
 </body>
 </html>
