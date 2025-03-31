@@ -8,7 +8,7 @@ const staticRoutes = require('./routes/staticRoutes');
 const cookieParser = require('cookie-parser'); // ✅ Correct import
 const { restrictToLoggedinUserOnly } = require('./middlewares/auth');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+
 
 
 const ttsRoute = require("./routes/tts"); // Uncomment if you have this file
@@ -31,38 +31,27 @@ app.use(express.urlencoded({ extended: true }));
 
  // Import express-session
  app.use(session({
-    secret: process.env.SESSION_SECRET || 'defaultSecretKey',
+    secret: process.env.SESSION_SECRET || 'defaultSecretKey', // ✅ Corrected
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI, // ✅ Store sessions in MongoDB
-        ttl: 14 * 24 * 60 * 60, // ✅ Sessions expire in 14 days
-    }),
+    // cookie: { secure: false },
     cookie: { 
         secure: process.env.NODE_ENV === 'production', // Secure in production
-        httpOnly: true, // Prevent XSS attacks
-        sameSite: 'strict' // Prevent CSRF attacks
+        httpOnly: true, // Protect against XSS
+        sameSite: 'strict' // Prevent CSRF
     }
-}));
 
+}));
 
 // for original database when deployed 
 
-// require('dotenv').config();
-// mongoose.connect(process.env.MONGO_URI).then(() => {
-//     console.log("Connected to MongoDB (Database: userdata)");
-// }).catch(err => {
-//     console.error("MongoDB connection error:", err);
-// });
-
-mongoose.connect(process.env.MONGO_URI, {
-    serverSelectionTimeoutMS: 5000, // Fail after 5 seconds if MongoDB is unreachable
-}).then(() => {
-    console.log("✅ Connected to MongoDB (Database: userdata)");
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log("Connected to MongoDB (Database: userdata)");
 }).catch(err => {
-    console.error("❌ MongoDB connection error:", err);
-    process.exit(1); // Exit process if database fails
+    console.error("MongoDB connection error:", err);
 });
+
 
 // ✅ Set view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -71,6 +60,7 @@ app.set('view engine', 'ejs');
 // ✅ Serve static files
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -86,6 +76,23 @@ app.use("/tts", restrictToLoggedinUserOnly, ttsRoute);
 app.use("/lastyear", restrictToLoggedinUserOnly, lastyearRoute);
 app.use("/miniprojects", restrictToLoggedinUserOnly, miniprojectsRoute);
 
+// Pass auth status to views 
+
+
+
+
+//
+//  ✅ Start server
+
+
+// if (process.env.NODE_ENV !== 'production') {
+//     app.listen(port, () => {
+//         console.log(`🚀 Server running at http://localhost:${port}`);
+//     });
+// }
+// app.listen(port, () => {
+//     console.log(`Server running at http://localhost:${port}`);
+// });
 
 module.exports = app;
 
