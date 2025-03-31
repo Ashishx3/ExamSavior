@@ -48,13 +48,21 @@ app.use(express.urlencoded({ extended: true }));
 
 // for original database when deployed 
 
-require('dotenv').config();
-mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log("Connected to MongoDB (Database: userdata)");
-}).catch(err => {
-    console.error("MongoDB connection error:", err);
-});
+// require('dotenv').config();
+// mongoose.connect(process.env.MONGO_URI).then(() => {
+//     console.log("Connected to MongoDB (Database: userdata)");
+// }).catch(err => {
+//     console.error("MongoDB connection error:", err);
+// });
 
+mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000, // Fail after 5 seconds if MongoDB is unreachable
+}).then(() => {
+    console.log("✅ Connected to MongoDB (Database: userdata)");
+}).catch(err => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1); // Exit process if database fails
+});
 
 // ✅ Set view engine
 app.set('views', path.join(__dirname, 'views'));
