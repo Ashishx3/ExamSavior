@@ -45,16 +45,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // for original database when deployed 
 
-// require('dotenv').config();
-// mongoose.connect(process.env.MONGO_URI).then(() => {
-//     console.log("Connected to MongoDB (Database: userdata)");
-// }).catch(err => {
-//     console.error("MongoDB connection error:", err);
-// });
-fetch("/api/db")
-    .then(res => res.json())
-    .then(data => console.log(data.message))
-    .catch(err => console.error("Database API error:", err));
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log("Connected to MongoDB (Database: userdata)");
+}).catch(err => {
+    console.error("MongoDB connection error:", err);
+});
 
 
 // ✅ Set view engine
@@ -94,8 +90,8 @@ app.use("/miniprojects", restrictToLoggedinUserOnly, miniprojectsRoute);
 //         console.log(`🚀 Server running at http://localhost:${port}`);
 //     });
 // }
-// app.listen(port, () => {
-//     console.log(`Server running at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
 
-module.exports = app;
+// module.exports = app;
