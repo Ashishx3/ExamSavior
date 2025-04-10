@@ -21,9 +21,12 @@
 .dark-theme {
   background-color: var(--dark-body);
 }
-.dark-theme a, .specialwel{
+.dark-theme a{
   color: var(--blue-on-darktheme);
 }
+.dark-theme .specialwel{
+  color: rgb(38 184 230);
+ }
 .dark-theme .wel{
   color: var(--light-bg);
 }

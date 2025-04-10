@@ -5,7 +5,7 @@ const { handleUserSignup, handleUserLogin } = require('../controllers/user')
 // ✅ Logout Route
 router.get("/logout", (req, res) => {
     res.clearCookie("uid"); // Remove the session cookie
-    return res.redirect("/login"); // Redirect to login page after logout
+    return res.redirect("/"); // Redirect to login page after logout
 });
 
 router.post("/", handleUserSignup);

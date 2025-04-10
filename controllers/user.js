@@ -1,70 +1,50 @@
-
-const User = require("../models/user");
-const {v4: uuidv4} = require('uuid');
-const { setUser } = require('../service/auth')
-
+const db = require('../db');
+const { v4: uuidv4 } = require('uuid');
+const { setUser } = require('../service/auth');
 
 async function handleUserLogin(req, res) {
   const { email, password } = req.body;
   console.log("Login attempt for:", email);
 
-  const user = await User.findOne({ email });
+  try {
+    const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    const user = rows[0];
 
-  if (!user) {
-    console.log("User not found!");
-    return res.render("login", { error: "Invalid Username or Password" });
+    if (!user || user.password !== password) {
+      console.log("Invalid credentials!");
+      return res.render("login", { error: "Invalid Username or Password" });
+    }
+
+    console.log("Login successful for:", email);
+    const sessionId = uuidv4();
+    setUser(sessionId, user);
+    res.cookie("uid", sessionId);
+    return res.redirect("/");
+  } catch (error) {
+    console.error("Login error:", error);
+    return res.render("login", { error: "Something went wrong. Try again." });
   }
-
-  if (user.password !== password) {
-    console.log("Password incorrect!");
-    return res.render("login", { error: "Invalid Username or Password" });
-  }
-
-  console.log("Login successful for:", email);
-  const sessionId = uuidv4();
-  setUser(sessionId, user);
-  res.cookie("uid", sessionId);
-
-  return res.redirect("/");
 }
 
 async function handleUserSignup(req, res) {
   const { name, email, password } = req.body;
 
   try {
-    // Check if the email already exists
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-      console.log("Signup failed: Email already exists!");
-      return res.render("signup", { error: "Email already in use! Try a different one." });
+    const existing = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (existing.rows.length > 0) {
+      return res.render("signup", { error: "Email already in use!" });
     }
 
-    // If email is unique, create a new user
-    await User.create({ name, email, password });
-    
+    await db.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
     console.log("Signup successful for:", email);
-    return res.redirect("/");  // Redirect to login after signup
+    return res.redirect("/");
   } catch (error) {
     console.error("Signup error:", error);
-    return res.render("signup", { error: "Something went wrong! Please try again." });
+    return res.render("signup", { error: "Signup failed! Please try again." });
   }
 }
-
-// async function handleUserSignup(req, res) {
-//   const { name, email, password } = req.body;
-//   await User.create({
-//     name,
-//     email,
-//     password,
-//   });
-//   return res.redirect("/");  //login ko bhejega agar login hataya tou normal homepage
-// }
-
-
 
 module.exports = {
   handleUserSignup,
   handleUserLogin,
-  
 };
