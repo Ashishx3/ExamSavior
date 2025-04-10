@@ -4,9 +4,20 @@ const { handleUserSignup, handleUserLogin } = require('../controllers/user')
 
 // ✅ Logout Route
 router.get("/logout", (req, res) => {
-    res.clearCookie("uid"); // Remove the session cookie
-    return res.redirect("/"); // Redirect to login page after logout
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout error:", err);
+            return res.status(500).send("Logout failed");
+        }
+
+        res.clearCookie("connect.sid", {
+            path: "/",
+        });
+
+        return res.redirect("/login");
+    });
 });
+
 
 router.post("/", handleUserSignup);
 router.post("/login", handleUserLogin);
