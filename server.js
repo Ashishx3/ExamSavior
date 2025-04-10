@@ -1,69 +1,80 @@
 const express = require('express');
 const path = require('path');
-const { checkAuthStatus } = require("./middlewares/auth");
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const { Pool } = require('pg');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+dotenv.config();
+
+// Middleware
+const { checkAuthStatus, restrictToLoggedinUserOnly } = require('./middlewares/auth');
+
+// Routes
 const userRoute = require('./routes/user');
 const staticRoutes = require('./routes/staticRoutes');
-const cookieParser = require('cookie-parser'); // ✅ Correct import
-const { restrictToLoggedinUserOnly } = require('./middlewares/auth');
-const session = require('express-session');
-const ttsRoute = require("./routes/tts"); // Uncomment if you have this file
-const lastyearRoute = require("./routes/lastyear"); // Uncomment if you have this file
-const miniprojectsRoute = require("./routes/miniprojects"); // Uncomment if you have this file
-const { ElevenLabsClient } = require("elevenlabs");
+const ttsRoute = require('./routes/tts');
+const lastyearRoute = require('./routes/lastyear');
+const miniprojectsRoute = require('./routes/miniprojects');
 
-
+// DB Pool
+const pgPool = new Pool({
+    connectionString: process.env.DATABASE_URL, // ✅ Use POSTGRES_URI, not MONGO_URI
+    ssl: { rejectUnauthorized: false }, // ✅ Required for Neon
+});
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cookieParser());
-app.use(checkAuthStatus);
-
-
-// ✅ Express includes body-parsing middleware (No need for `body-parser`)
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true })); 
-
- // Import express-session
- app.use(session({
-    secret: process.env.SESSION_SECRET || 'defaultSecretKey', // ✅ Corrected
-    resave: false,
-    saveUninitialized: true,
-    // cookie: { secure: false },
-    cookie: { 
-        secure: process.env.NODE_ENV === 'production', // Secure in production
-        httpOnly: true, // Protect against XSS
-        sameSite: 'strict' // Prevent CSRF
-    }
-
-}));
-
-// ✅ Set view engine
+// View engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// ✅ Serve static files
+// Static files
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
-// app.use(express.static(path.join(__dirname, 'public')));
+// Body parsers
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
-app.get('/mainindexpage', (req, res) => {
-    res.redirect("/");
-});
+// Session setup
+app.use(
+    session({
+        store: new pgSession({
+            pool: pgPool,
+            tableName: 'user_sessions',
+        }),
+        secret: process.env.SESSION_SECRET || 'defaultSecretKey',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === 'production', // true on Vercel
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
+            sameSite: 'lax',
+        },
+    })
+);
 
-// ✅ Use routes
-app.use("/user", userRoute);
-app.use("/", staticRoutes);
-app.use("/tts", restrictToLoggedinUserOnly, ttsRoute);
-app.use("/lastyear", restrictToLoggedinUserOnly, lastyearRoute);
-app.use("/miniprojects", restrictToLoggedinUserOnly, miniprojectsRoute);
+// Auth status check
+app.use(checkAuthStatus);
 
+// Routes
+app.get('/', (req, res) => res.render('index'));
+app.get('/mainindexpage', (req, res) => res.redirect("/"));
 
-// app.listen(port, () => {
-//     console.log(`Server running at http://localhost:${port}`);
-// });
+app.use('/user', userRoute);
+app.use('/', staticRoutes);
+app.use('/tts', restrictToLoggedinUserOnly, ttsRoute);
+app.use('/lastyear', restrictToLoggedinUserOnly, lastyearRoute);
+app.use('/miniprojects', restrictToLoggedinUserOnly, miniprojectsRoute);
+
+// ✅ For local dev (not used by Vercel)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`🚀 Server running locally at http://localhost:${port}`);
+    });
+}
 
 module.exports = app;

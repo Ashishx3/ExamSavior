@@ -1,6 +1,4 @@
 const db = require('../db');
-const { v4: uuidv4 } = require('uuid');
-const { setUser } = require('../service/auth');
 
 async function handleUserLogin(req, res) {
   const { email, password } = req.body;
@@ -16,9 +14,12 @@ async function handleUserLogin(req, res) {
     }
 
     console.log("Login successful for:", email);
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
+    req.session.user = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
+
     return res.redirect("/");
   } catch (error) {
     console.error("Login error:", error);
@@ -37,7 +38,7 @@ async function handleUserSignup(req, res) {
 
     await db.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3)', [name, email, password]);
     console.log("Signup successful for:", email);
-    return res.redirect("/");
+    return res.redirect("/login");
   } catch (error) {
     console.error("Signup error:", error);
     return res.render("signup", { error: "Signup failed! Please try again." });
