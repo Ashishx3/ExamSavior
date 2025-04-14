@@ -14,6 +14,7 @@ const { checkAuthStatus, restrictToLoggedinUserOnly } = require('./middlewares/a
 const userRoute = require('./routes/user');
 const staticRoutes = require('./routes/staticRoutes');
 const ttsRoute = require('./routes/tts');
+const privateroot = require('./routes/privatelobby')
 const lastyearRoute = require('./routes/lastyear');
 const miniprojectsRoute = require('./routes/miniprojects');
 
@@ -66,6 +67,7 @@ app.get('/mainindexpage', (req, res) => res.redirect("/"));
 
 app.use('/user', userRoute);
 app.use('/', staticRoutes);
+app.use('/privatelobby', privateroot);
 app.use('/tts', restrictToLoggedinUserOnly, ttsRoute);
 app.use('/lastyear', restrictToLoggedinUserOnly, lastyearRoute);
 app.use('/miniprojects', restrictToLoggedinUserOnly, miniprojectsRoute);

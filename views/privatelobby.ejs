@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Permanent Hover & Glowing Input</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    /* Permanent hover-like effect */
+    .card {
+      background-color: #1e1e1e;
+      border: 2px solid #444;
+      border-radius: 1px;
+      padding: 1.5rem;
+      height: 80vh;
+      transition: all 0.1s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 150, 0.1    ); /* like hover glow */
+    }
+
+    .card.perma-hover {
+      border-color: #ff3ed8;
+      box-shadow: 0 0 25px rgba(0, 255, 120, 0.1);
+      transform: scale(1.02);
+    }
+
+    .hat-section {
+        width: 90%;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
+
+    .glow-input {
+        
+      background-color: #1e1e1e;
+      border: 2px solid #555;
+      border-radius: 8px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      width: 90%;
+      color: #fff;
+      transition: all 0.3s ease;
+      outline: none;
+      position: relative;
+      bottom: -382px;
+    }
+
+    .glow-input:focus {
+      border-color: #00ccff;
+      box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card perma-hover">
+    <h2>This is a permanently hovered card</h2>
+    <p>It's styled like it's being hovered over all the time.</p>
+    <div class="hat-section">
+   
+        <input type="text" class="glow-input" placeholder="Type your hat idea...">
+      </div>
+  </div>
+
+
+
+</body>
+</html>
