@@ -35,6 +35,18 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 
 // Body parsers
+app.use((req, res, next) => {
+    const host = req.headers.host;
+    const originalUrl = req.originalUrl;
+  
+    // Redirect non-canonical domain (examsavior.vercel.app) to examsavior.net
+    if (host === 'examsavior.vercel.app') {
+      return res.redirect(301, `https://www.examsavior.net${originalUrl}`);
+    }
+  
+    next();
+  });
+  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
