@@ -40,8 +40,12 @@ svg {
   }
 }
 
-.container {
-	height: 100vh;
+.containering {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+	
 }
 
 form {
