@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meet The Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .video-bg {
+      
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .text-wrapper {
+      position: relative;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .text-wrapper div {
+    
+      --s: 6px;
+      --o: calc(0.5 * var(--s));
+      --sl: calc(50% - 0.5px), #0000 calc(50% + 0.5px);
+
+      font-size: clamp(3em, 10vw, 10em);
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: #fff var(--o);
+      mix-blend-mode: screen;
+      line-height: 1;
+
+      background: 
+        linear-gradient(22.5deg, #fff var(--sl)) text,
+        linear-gradient(22.5deg, #000 var(--sl)),
+        linear-gradient(#094770 50%, #0000 0) 0 0 / 1% var(--s);
+
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+   
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="/images/vid.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+
+  <!-- Foreground Text at Top -->
+  <div class="text-wrapper">
+    <div ">MEET THE TEAM</div>
+  </div>
+
+</body>
+</html>

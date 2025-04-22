@@ -31,8 +31,7 @@ let year = "";
 function showBranchContent(selectedbranch){
   selectyouryrmsg();
   branch = selectedbranch ;
-    console.log(branch);
-    const ids = ["main-content", "branch-selection", "facilities-container", "facilities-container2","facilities-container3"]; // threedivs-tobehid ko rehedeta h abh i List of IDs to be hidden
+    const ids = ["main-content", "conc", "branch-selection", "facilities-container", "facilities-container2","facilities-container3"]; // threedivs-tobehid ko rehedeta h abh i List of IDs to be hidden
 
     ids.forEach(id => {
         document.getElementById(id)?.classList.add("hidden");
@@ -173,14 +172,13 @@ function generateDivs(yearContent, branch) {
       element.classList.remove("adddis");
     });
   }
-  function showHome() {
-    document.getElementById("footercont").style.position = "relative";
-    document.getElementById("main-content").classList.remove("hidden");
-    document.getElementById("branch-selection").classList.remove("hidden");
+  function showHome() { 
+    const idssd = ["main-content", "containering", "branch-selection", "facilities-container", "facilities-container2", "facilities-container3" ]; // threedivs-tobehid ko rehedeta h abh i List of IDs to be hidden
 
-  document.getElementById("facilities-container").classList.remove("hidden")
-  document.getElementById("facilities-container2").classList.remove("hidden")
-  document.getElementById("facilities-container3").classList.remove("hidden")
+    idssd.forEach(id => {
+        document.getElementById(id)?.classList.remove("hidden");
+    });
+    document.getElementById("footercont").style.position = "relative";
   document.getElementById("madebyashishd").style.display = "block";
 
   document.getElementById("dynamic-content").classList.add("hidden");

@@ -146,7 +146,7 @@
   z-index: 100000;
   color: white;
   position: absolute;
-  bottom: 10px;
+  bottom: -10px;
   right: 10px;
   padding: 10px 20px;
   background-color: #1f2937;
@@ -170,6 +170,10 @@
 .tatti{
   display: flex;
 }
+.contact-btn{
+  font-size: 10px;
+  width: 95px;
+  }
 }
 @media screen and (max-width: 480px){
 .o2{
@@ -202,6 +206,16 @@ transition: transform 0.5s ease-out;
 
 .parallax-active {
 transform: translateY(-10%);
+}
+@media screen and (max-width: 360px) {
+  .contact-btn {
+      font-size: 9px;
+      width: 85px;
+      padding: 6px 10px;
+  }
+  .h2qs{
+      bottom: 11px;
+  }
 }
 
 
