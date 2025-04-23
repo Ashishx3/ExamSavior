@@ -7,6 +7,4 @@ const pool = new Pool({
   
 });
 
-console.log("🔌 Connecting to DB:", process.env.DATABASE_URL);
-
 module.exports = pool;
