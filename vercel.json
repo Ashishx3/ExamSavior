@@ -15,16 +15,7 @@
     "files": [
       "views/**/*",
       "public/**/*"
-    ],
-    
-    "redirects": [
-        {
-          "source": "/(.*)",
-          "destination": "https://www.examsavior.net/$1",
-          "permanent": true
-        }
-      ]
-    
+    ]
     
   }
   
