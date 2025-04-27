@@ -365,7 +365,7 @@ const firstYearContent = {
       },
       { 
         title: "Mathematics 3", 
-        links: ["\notes\Aids\Second Year\M3\n1_compressed.pdf", "\notes\Aids\Second Year\M3\n2_compressed.pdf", "link3", "link4", "link5"] 
+        links: ["/notes/Aids/Second Year/M3/n1_compressed.pdf", "/notes/Aids/Second Yea/M3/n2_compressed.pdf", "link3", "link4", "link5"] 
       },
       { 
         title: "Database Management Systems", 
