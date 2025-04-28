@@ -365,7 +365,7 @@ const firstYearContent = {
       },
       { 
         title: "Mathematics 3", 
-        links: ["/notes/Aids/Second Year/M3/n1_compressed.pdf", "/notes/Aids/Second Year/M3/n2_compressed.pdf", "link3", "link4", "link5"] 
+        links: ["https://drive.google.com/file/d/1Kr3u7MNK2fi-56_AhAv22rKX8pepJFVy/view?usp=sharing", "https://drive.google.com/file/d/1GlihO-r51VknbacBFdmM3NjP3_sR1wNg/view?usp=sharing", "link3", "link4", "link5"] 
       },
       { 
         title: "Database Management Systems", 
