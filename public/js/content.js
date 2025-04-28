@@ -373,7 +373,7 @@ const firstYearContent = {
       },
       { 
         title: "Software Engineering with Agile Methodology", 
-        links: ["https://www.up-4ever.net/ejlc3s3zf0rd", "link2", "link3", "link4", "link5"] 
+        links: ["https://drive.google.com/file/d/14EroMxM8PXIG7Gp3wj6D9-pEckITjBTY/view?usp=sharing", "link2", "link3", "link4", "link5"] 
       },
       { 
         title: "Data Science", 
