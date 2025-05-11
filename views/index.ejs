@@ -448,7 +448,7 @@
       
       <span onclick="document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });" class="spancont contactd">Contact</span>
 
-      <span class="spancont followd">Follow us :</span>
+      <span id="privac" class="spancont followd">Privacy Policy</span>
 
     <span class="social-container">
         <ul class="social-icons">
@@ -490,8 +490,11 @@
     window.location.href = "/signup";
   });
 });
-  </script>
 
+ document.getElementById("privac").addEventListener("click", () => {
+    window.location.href = "/privacy";
+ })
+ 
   <script>
 
     document.addEventListener("DOMContentLoaded", function () {

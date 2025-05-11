@@ -14,10 +14,11 @@ const { checkAuthStatus, restrictToLoggedinUserOnly } = require('./middlewares/a
 const userRoute = require('./routes/user');
 const staticRoutes = require('./routes/staticRoutes');
 const ttsRoute = require('./routes/tts');
+const terms = require('./routes/terms');
 const privateroot = require('./routes/Team-Members')
 const lastyearRoute = require('./routes/lastyear');
 const miniprojectsRoute = require('./routes/miniprojects');
-
+const privacypolicyroute = require('./routes/privacy-policy')
 // DB Pool
 const pgPool = new Pool({
     connectionString: process.env.DATABASE_URL, // ✅ Use POSTGRES_URI, not MONGO_URI
@@ -87,6 +88,8 @@ app.get('/callback', (req, res) => {
 app.use('/user', userRoute);
 app.use('/', staticRoutes);
 app.use('/Team-Members', privateroot);
+app.use('/terms-Of-Service', terms )
+app.use('/privacy', privacypolicyroute);
 app.use('/tts', restrictToLoggedinUserOnly, ttsRoute);
 app.use('/lastyear', restrictToLoggedinUserOnly, lastyearRoute);
 app.use('/miniprojects', restrictToLoggedinUserOnly, miniprojectsRoute);
