@@ -76,6 +76,13 @@ app.use(checkAuthStatus);
 // Routes
 app.get('/', (req, res) => res.render('index'));
 app.get('/mainindexpage', (req, res) => res.redirect("/"));
+app.get('/callback', (req, res) => {
+  // Optional: handle the OAuth code here if needed
+  // const code = req.query.code;
+
+  // Then redirect to homepage
+  res.redirect('/');
+});
 
 app.use('/user', userRoute);
 app.use('/', staticRoutes);
