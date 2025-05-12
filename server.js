@@ -90,7 +90,10 @@ app.get('/', (req, res) => res.render('index'));
 app.get('/mainindexpage', (req, res) => res.redirect("/"));
 
 
-app.use('/user', userRoute);
+app.use('/', userRoute);
+
+
+
 app.use('/', staticRoutes);
 app.use('/Team-Members', privateroot);
 app.use('/terms-Of-Service', terms )

@@ -1,4 +1,6 @@
 const db = require('../db');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 // Traditional Email/Password Login
 async function handleUserLogin(req, res) {
@@ -70,12 +72,79 @@ async function findOrCreateGoogleUser(profile) {
     throw error;
   }
 }
+async function handleForgotPassword(req, res) {
+  const { email } = req.body;
+
+  try {
+    const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    const user = rows[0];
+
+    if (!user) {
+      return res.render("forgot-password", { error: "No account with that email found." });
+    }
+
+    // Generate reset token
+    const token = crypto.randomBytes(32).toString('hex');
+    const expiry = Date.now() + 3600000; // 1 hour
+
+    await db.query(
+      'UPDATE users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3',
+      [token, expiry, email]
+    );
+
+    const resetLink = `${process.env.BASE_URL}/reset-password/${token}`;
+    // const resetLink = `http://localhost:3000/reset-password/${token}`;
+rs
+
+    // Send email
+    const transporter = nodemailer.createTransport({ /* SMTP config here */ });
+    await transporter.sendMail({
+      to: email,
+      subject: "Password Reset",
+      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
+    });
+
+    return res.render("forgot-password", { message: "Check your email for the reset link." });
+  } catch (error) {
+    console.error("Forgot Password error:", error);
+    return res.render("forgot-password", { error: "Something went wrong." });
+  }
+}
+async function handleResetPassword(req, res) {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  try {
+    const { rows } = await db.query(
+      'SELECT * FROM users WHERE reset_token = $1 AND reset_token_expires > $2',
+      [token, Date.now()]
+    );
+
+    const user = rows[0];
+    if (!user) {
+      return res.render("reset-password", { error: "Token is invalid or expired." });
+    }
+
+    await db.query(
+      'UPDATE users SET password = $1, reset_token = NULL, reset_token_expires = NULL WHERE id = $2',
+      [password, user.id]
+    );
+
+    return res.redirect("/login");
+  } catch (error) {
+    console.error("Reset Password error:", error);
+    return res.render("reset-password", { error: "Something went wrong." });
+  }
+}
+
 
 
 module.exports = {
   handleUserLogin,
   handleUserSignup,
   findOrCreateGoogleUser,
+  handleForgotPassword,
+  handleResetPassword,
 };
 
 
