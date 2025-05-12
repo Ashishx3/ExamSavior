@@ -48,20 +48,19 @@ async function handleUserSignup(req, res) {
 async function findOrCreateGoogleUser(profile) {
   const email = profile.emails[0].value;
   const name = profile.displayName;
-  const googleId = profile.id;
   const photo = profile.photos?.[0]?.value || null;
+  const googleId = profile.id;
 
   try {
     let result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
     let user = result.rows[0];
 
     if (!user) {
-      // New Google user
-      await db.query(
-        'INSERT INTO users (name, email, google_id, photo) VALUES ($1, $2, $3, $4)',
-        [name, email, googleId, photo]
+      // Insert user with default 'GOOGLE_AUTH' password placeholder
+      result = await db.query(
+        `INSERT INTO users (name, email, password, photo) VALUES ($1, $2, $3, $4) RETURNING *`,
+        [name, email, 'GOOGLE_AUTH', photo]
       );
-      result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
       user = result.rows[0];
     }
 
@@ -71,6 +70,7 @@ async function findOrCreateGoogleUser(profile) {
     throw error;
   }
 }
+
 // Google Login Callback Logic (used in passport.js)
 // async function findOrCreateGoogleUser(profile) {
 //   const email = profile.emails[0].value;
