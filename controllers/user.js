@@ -50,11 +50,12 @@ async function findOrCreateGoogleUser(profile) {
   const googleId = profile.id;
 
   try {
+    // Check if the user already exists in the database
     let result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
     let user = result.rows[0];
 
     if (!user) {
-      // Insert user with default 'GOOGLE_AUTH' password placeholder and google_id
+      // New Google user: Set a placeholder password and save user with google_id
       result = await db.query(
         `INSERT INTO users (name, email, password, photo, google_id) 
          VALUES ($1, $2, $3, $4, $5) RETURNING *`,
@@ -69,7 +70,6 @@ async function findOrCreateGoogleUser(profile) {
     throw error;
   }
 }
-
 
 
 module.exports = {
