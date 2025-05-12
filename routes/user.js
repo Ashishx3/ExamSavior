@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const { handleUserSignup, handleUserLogin, handleForgotPassword,
-  handleResetPassword} = require('../controllers/user')
+const { handleUserSignup, handleUserLogin
+  } = require('../controllers/user')
 
 // ✅ Logout Route
 router.get("/logout", (req, res) => {

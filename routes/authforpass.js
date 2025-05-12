@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { handleForgotPassword,
+  handleResetPassword} = require('../controllers/user')
 
 router.get('/forgot-password', (req, res) => {
   res.render('forgot-password', { error: null, message: null });
