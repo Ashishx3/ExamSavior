@@ -8,11 +8,15 @@ async function handleUserLogin(req, res) {
   try {
     const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = rows[0];
+if (!user || user.password !== password || user.google_id) {
+  console.log("Invalid credentials or Google account!");
+  return res.render("login", { error: "Invalid Username or Password" });
+}
 
-    if (!user || user.password !== password || user.password === 'GOOGLE_AUTH') {
-      console.log("Invalid credentials or Google account!");
-      return res.render("login", { error: "Invalid Username or Password" });
-    }
+    // if (!user || user.password !== password || user.password === 'GOOGLE_AUTH') {
+    //   console.log("Invalid credentials or Google account!");
+    //   return res.render("login", { error: "Invalid Username or Password" });
+    // }
 
     console.log("Login successful for:", email);
     req.session.user = user;
@@ -41,11 +45,11 @@ async function handleUserSignup(req, res) {
     return res.render("signup", { error: "Signup failed! Please try again." });
   }
 }
-
-// Google Login Callback Logic (used in passport.js)
 async function findOrCreateGoogleUser(profile) {
   const email = profile.emails[0].value;
   const name = profile.displayName;
+  const googleId = profile.id;
+  const photo = profile.photos?.[0]?.value || null;
 
   try {
     let result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -54,8 +58,8 @@ async function findOrCreateGoogleUser(profile) {
     if (!user) {
       // New Google user
       await db.query(
-        'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
-        [name, email, 'GOOGLE_AUTH']
+        'INSERT INTO users (name, email, google_id, photo) VALUES ($1, $2, $3, $4)',
+        [name, email, googleId, photo]
       );
       result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
       user = result.rows[0];
@@ -67,6 +71,31 @@ async function findOrCreateGoogleUser(profile) {
     throw error;
   }
 }
+// Google Login Callback Logic (used in passport.js)
+// async function findOrCreateGoogleUser(profile) {
+//   const email = profile.emails[0].value;
+//   const name = profile.displayName;
+
+//   try {
+//     let result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+//     let user = result.rows[0];
+
+//     if (!user) {
+//       // New Google user
+//       await db.query(
+//         'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
+//         [name, email, 'GOOGLE_AUTH']
+//       );
+//       result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+//       user = result.rows[0];
+//     }
+
+//     return user;
+//   } catch (error) {
+//     console.error('Google OAuth DB error:', error);
+//     throw error;
+//   }
+// }
 
 module.exports = {
   handleUserLogin,
