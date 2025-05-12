@@ -26,6 +26,7 @@ const privateroot = require('./routes/Team-Members')
 const lastyearRoute = require('./routes/lastyear');
 const miniprojectsRoute = require('./routes/miniprojects');
 const privacypolicyroute = require('./routes/privacy-policy')
+const authRoutesforforgotpass = require('./routes/authforpass');
 // DB Pool
 const pgPool = new Pool({
     connectionString: process.env.DATABASE_URL, // ✅ Use POSTGRES_URI, not MONGO_URI
@@ -82,6 +83,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
+
+app.use('/', authRoutesforforgotpass); // or use '/auth' if you want it to be at /auth/forgot-password
+
 // Auth status check
 app.use(checkAuthStatus);
 
