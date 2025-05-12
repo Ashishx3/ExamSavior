@@ -8,6 +8,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Middleware
+const passport = require('passport');
+const authRoutes = require('./routes/authRoutes');
+
+
+
+require('./config/passport'); // import passport strategy
+
 const { checkAuthStatus, restrictToLoggedinUserOnly } = require('./middlewares/auth');
 
 // Routes
@@ -52,6 +59,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+
 // Session setup
 app.use(
     session({
@@ -71,19 +79,16 @@ app.use(
     })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/auth', authRoutes);
 // Auth status check
 app.use(checkAuthStatus);
 
 // Routes
 app.get('/', (req, res) => res.render('index'));
 app.get('/mainindexpage', (req, res) => res.redirect("/"));
-app.get('/callback', (req, res) => {
-  // Optional: handle the OAuth code here if needed
-  // const code = req.query.code;
 
-  // Then redirect to homepage
-  res.redirect('/');
-});
 
 app.use('/user', userRoute);
 app.use('/', staticRoutes);

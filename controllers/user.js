@@ -1,6 +1,6 @@
 const db = require('../db');
 
-
+// Traditional Email/Password Login
 async function handleUserLogin(req, res) {
   const { email, password } = req.body;
   console.log("Login attempt for:", email);
@@ -9,13 +9,13 @@ async function handleUserLogin(req, res) {
     const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = rows[0];
 
-    if (!user || user.password !== password) {
-      console.log("Invalid credentials!");
+    if (!user || user.password !== password || user.password === 'GOOGLE_AUTH') {
+      console.log("Invalid credentials or Google account!");
       return res.render("login", { error: "Invalid Username or Password" });
     }
 
     console.log("Login successful for:", email);
-    req.session.user = user; // ✅ store user in session
+    req.session.user = user;
     return res.redirect("/");
   } catch (error) {
     console.error("Login error:", error);
@@ -23,6 +23,7 @@ async function handleUserLogin(req, res) {
   }
 }
 
+// Traditional Signup
 async function handleUserSignup(req, res) {
   const { name, email, password } = req.body;
 
@@ -41,9 +42,36 @@ async function handleUserSignup(req, res) {
   }
 }
 
+// Google Login Callback Logic (used in passport.js)
+async function findOrCreateGoogleUser(profile) {
+  const email = profile.emails[0].value;
+  const name = profile.displayName;
+
+  try {
+    let result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    let user = result.rows[0];
+
+    if (!user) {
+      // New Google user
+      await db.query(
+        'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
+        [name, email, 'GOOGLE_AUTH']
+      );
+      result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+      user = result.rows[0];
+    }
+
+    return user;
+  } catch (error) {
+    console.error('Google OAuth DB error:', error);
+    throw error;
+  }
+}
+
 module.exports = {
-  handleUserSignup,
   handleUserLogin,
+  handleUserSignup,
+  findOrCreateGoogleUser,
 };
 
 
@@ -51,7 +79,11 @@ module.exports = {
 
 
 
+
+
+
 // const db = require('../db');
+
 
 // async function handleUserLogin(req, res) {
 //   const { email, password } = req.body;
@@ -67,12 +99,7 @@ module.exports = {
 //     }
 
 //     console.log("Login successful for:", email);
-//     req.session.user = {
-//       id: user.id,
-//       name: user.name,
-//       email: user.email,
-//     };
-
+//     req.session.user = user; // ✅ store user in session
 //     return res.redirect("/");
 //   } catch (error) {
 //     console.error("Login error:", error);
@@ -102,3 +129,9 @@ module.exports = {
 //   handleUserSignup,
 //   handleUserLogin,
 // };
+
+
+
+
+
+
