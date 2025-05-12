@@ -94,20 +94,30 @@
   font-weight: 300;
   font-style: normal;
     margin-top: 15px;
-    width: 100%;
+    margin-left: 6px;
+    width: 48%;
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: #007bff;
-    color: white;
+    background: #efeeee;
+    border: 2px solid black;
+    color: rgb(10, 10, 10);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
+#googlesignup{
+    width: 98%;
+}
+span{
+    display: flex;
+    flex-wrap: wrap;
+ 
+}
 
 .fieldscontainer button:hover {
-    background: #0056b3;
+    background: #cee6ff;
 }
 .parallax {
 background: url('/images/o23.png') no-repeat center center fixed;
@@ -147,9 +157,12 @@ transform: translateY(-10%);
                 <input placeholder="example@gmail.com" type="text" required name="email">
                 <label for="">Password</label>
                 <input placeholder="Enter your password" type="text" required name="password">
-        
-                <button type="submit">login</button>
+        <span>
+                <button type="submit">login <i class="fa-solid fa-right-to-bracket"></i></button>
                 <button id="forsignup">Register</button>
+                </span>
+              <button id="googlesignup" type="button">Sign in with <i class="fa-brands fa-google"></i>oogle</button>
+
                 
                 <% if (locals.error) { %>
                     <div style="color: red; " class="alert alert-danger" id="error-message">
@@ -170,6 +183,9 @@ transform: translateY(-10%);
         }, 4000);
          document.getElementById("forsignup").addEventListener("click", function(){
             window.location.href = "/signup";
+        })
+         document.getElementById("googlesignup").addEventListener("click", function(){
+            window.location.href = "/auth/google";
         })
     </script>
 

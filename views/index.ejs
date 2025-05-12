@@ -135,11 +135,10 @@
             <li><a href="/Team-Members" &dtrif;>ABOUT US</a>
             </li>
             <li><a href="#contactuss" id="contactss">CONTACT</a></li>
-            <li><a href="/auth/google" id="contactss"><button type="button">sign in with google</button></a></li>
-
+            
             <li>
               <% if (user && user.photo) { %>
-                <img src="<%= user.photo %>" alt="Profile" />
+                <img class="dashboard" src="<%= user.photo %>" alt="Profile" />
                 <% } %>
             </li>
             <label class="switch" id="theme-toggle">
