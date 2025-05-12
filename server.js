@@ -90,7 +90,7 @@ app.get('/', (req, res) => res.render('index'));
 app.get('/mainindexpage', (req, res) => res.redirect("/"));
 
 
-app.use('/', userRoute);
+app.use('/user', userRoute);
 
 
 
