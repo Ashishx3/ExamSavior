@@ -46,11 +46,16 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
+  const db = require('../db');
   try {
     const { rows } = await db.query('SELECT * FROM users WHERE id = $1', [id]);
-    done(null, rows[0]);
+    if (!rows[0]) {
+      console.warn(`User with ID ${id} not found during deserialization`);
+      return done(null, false); // Ends the session gracefully
+    }
+    return done(null, rows[0]);
   } catch (err) {
-    console.error("❌ Deserialization error:", err);
-    done(err, null);
+    console.error("Error in deserializeUser:", err);
+    return done(err, null);
   }
 });
