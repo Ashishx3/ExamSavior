@@ -80,7 +80,7 @@ async function handleForgotPassword(req, res) {
     const user = rows[0];
 
     if (!user) {
-      return res.render("forgot-password", { error: "No account with that email found." });
+      return res.render("forgot-password", { error: "No account with that email found.", message: null });
     }
 
     // Generate reset token
@@ -94,7 +94,7 @@ async function handleForgotPassword(req, res) {
 
     const resetLink = `${process.env.BASE_URL}/reset-password/${token}`;
     // const resetLink = `http://localhost:3000/reset-password/${token}`;
-rs
+
 
     // Send email
     const transporter = nodemailer.createTransport({ /* SMTP config here */ });
@@ -107,7 +107,7 @@ rs
     return res.render("forgot-password", { message: "Check your email for the reset link." });
   } catch (error) {
     console.error("Forgot Password error:", error);
-    return res.render("forgot-password", { error: "Something went wrong." });
+    return res.render("forgot-password", { message: null, error: "Something went wrong." });
   }
 }
 async function handleResetPassword(req, res) {
