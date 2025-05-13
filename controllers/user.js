@@ -72,81 +72,81 @@ async function findOrCreateGoogleUser(profile) {
     throw error;
   }
 }
-async function handleForgotPassword(req, res) {
-  const { email } = req.body;
+// async function handleForgotPassword(req, res) {
+//   const { email } = req.body;
 
-  try {
-    const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-    const user = rows[0];
+//   try {
+//     const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+//     const user = rows[0];
 
-    if (!user) {
-      return res.render("forgot-password", { error: "No account with that email found.", message: null });
-    }
+//     if (!user) {
+//       return res.render("forgot-password", { error: "No account with that email found.", message: null });
+//     }
 
-    // Generate reset token
-    const token = crypto.randomBytes(32).toString('hex');
-    const expiry = Date.now() + 3600000; // 1 hour
+//     // Generate reset token
+//     const token = crypto.randomBytes(32).toString('hex');
+//     const expiry = Date.now() + 3600000; // 1 hour
 
-    await db.query(
-      'UPDATE users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3',
-      [token, expiry, email]
-    );
+//     await db.query(
+//       'UPDATE users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3',
+//       [token, expiry, email]
+//     );
 
-    const resetLink = `${process.env.BASE_URL}/reset-password/${token}`;
-    // const resetLink = `http://localhost:3000/reset-password/${token}`;
+//     const resetLink = `${process.env.BASE_URL}/reset-password/${token}`;
+//     // const resetLink = `http://localhost:3000/reset-password/${token}`;
 
 
-    // Send email
-   const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,           // smtp-relay.brevo.com
-      port: parseInt(process.env.SMTP_PORT), // 587
-      secure: false,                         // false for port 587
-      auth: {
-        user: process.env.SMTP_USER,         // your verified Brevo email
-        pass: process.env.SMTP_PASS,         // your generated Brevo SMTP key
-      },
-    });
+//     // Send email
+//    const transporter = nodemailer.createTransport({
+//       host: process.env.SMTP_HOST,           // smtp-relay.brevo.com
+//       port: parseInt(process.env.SMTP_PORT), // 587
+//       secure: false,                         // false for port 587
+//       auth: {
+//         user: process.env.SMTP_USER,         // your verified Brevo email
+//         pass: process.env.SMTP_PASS,         // your generated Brevo SMTP key
+//       },
+//     });
 
-    // Step 5: Send email
-    await transporter.sendMail({
-      to: email,
-      from: process.env.SMTP_USER, // must match the verified sender email
-      subject: "Password Reset",
-      html: `<p>Click <a href="${resetLink}">here</a> to reset your password. This link will expire in 1 hour.</p>`,
-    });
+//     // Step 5: Send email
+//     await transporter.sendMail({
+//       to: email,
+//       from: process.env.SMTP_USER, // must match the verified sender email
+//       subject: "Password Reset",
+//       html: `<p>Click <a href="${resetLink}">here</a> to reset your password. This link will expire in 1 hour.</p>`,
+//     });
 
-    return res.render("forgot-password", { message: "Check your email for the reset link." });
-  } catch (error) {
-    console.error("Forgot Password error:", error);
-    return res.render("forgot-password", { message: null, error: "Something went wrong." });
-  }
-}
-async function handleResetPassword(req, res) {
-  const { token } = req.params;
-  const { password } = req.body;
+//     return res.render("forgot-password", { message: "Check your email for the reset link." });
+//   } catch (error) {
+//     console.error("Forgot Password error:", error);
+//     return res.render("forgot-password", { message: null, error: "Something went wrong." });
+//   }
+// }
+// async function handleResetPassword(req, res) {
+//   const { token } = req.params;
+//   const { password } = req.body;
 
-  try {
-    const { rows } = await db.query(
-      'SELECT * FROM users WHERE reset_token = $1 AND reset_token_expires > $2',
-      [token, Date.now()]
-    );
+//   try {
+//     const { rows } = await db.query(
+//       'SELECT * FROM users WHERE reset_token = $1 AND reset_token_expires > $2',
+//       [token, Date.now()]
+//     );
 
-    const user = rows[0];
-    if (!user) {
-      return res.render("reset-password", { error: "Token is invalid or expired." });
-    }
+//     const user = rows[0];
+//     if (!user) {
+//       return res.render("reset-password", { error: "Token is invalid or expired." });
+//     }
 
-    await db.query(
-      'UPDATE users SET password = $1, reset_token = NULL, reset_token_expires = NULL WHERE id = $2',
-      [password, user.id]
-    );
+//     await db.query(
+//       'UPDATE users SET password = $1, reset_token = NULL, reset_token_expires = NULL WHERE id = $2',
+//       [password, user.id]
+//     );
 
-    return res.redirect("/login");
-  } catch (error) {
-    console.error("Reset Password error:", error);
-    return res.render("reset-password", { error: "Something went wrong." });
-  }
-}
+//     return res.redirect("/login");
+//   } catch (error) {
+//     console.error("Reset Password error:", error);
+//     return res.render("reset-password", { error: "Something went wrong." });
+//   }
+// }
 
 
 
@@ -154,8 +154,8 @@ module.exports = {
   handleUserLogin,
   handleUserSignup,
   findOrCreateGoogleUser,
-  handleForgotPassword,
-  handleResetPassword,
+  // handleForgotPassword,
+  // handleResetPassword,
 };
 
 
