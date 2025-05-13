@@ -86,21 +86,21 @@
         font-optical-sizing: auto;
         font-weight: 300;
         font-style: normal;
-        width: 100%;
+        width: 98%;
         padding: 12px;
         border: none;
         border-radius: 6px;
-        background: #007bff;
-        color: white;
+        background: #f5f5f5;
+        border: 2px solid black;
+        color: rgb(0, 0, 0);
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
         transition: 0.3s;
       }
-
-      .fieldscontainer button:hover {
-        background: #0056b3;
-      }
+.fieldscontainer button:hover {
+    background: #dcedff;
+}
       .parallax {
         background: url("/images/o23.png") no-repeat center center fixed;
         background-size: cover;
@@ -121,6 +121,22 @@
         align-items: center;
         align-content: center;
       }
+      #googlesignup{
+    width: 98%;
+}
+
+@media(max-width: 480px) {
+    
+.fieldscontainer button{
+    width: 46%;
+}
+#googlesignup{
+    width: 94%;
+}
+.fieldscontainer input{
+    width: 89%;
+}
+}
     </style>
   </head>
 
@@ -156,6 +172,7 @@
             />
 
             <button type="submit">Sign Up</button>
+             <button id="googlesignup" type="button">Sign in with <i class="fa-brands fa-google"></i>oogle</button>
             <% if (locals.error) { %>
               <div style="font-size: 12px; color: red; " class="alert alert-danger" id="error-message">
                   <%= error %>

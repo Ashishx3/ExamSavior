@@ -54,7 +54,13 @@
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- <script src="https://kit.fontawe  some.com/fb78652043.js" crossorigin="anonymous"></script> -->
   <script src="https://kit.fontawesome.com/fb78652043.js" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <script type="application/ld+json">
+
+
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -538,6 +544,51 @@
         setInterval(autoSlide, intervalTime);
       });
   </script>
+  <script>
+  window.onload = function() {
+    google.accounts.id.initialize({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt(); // This triggers One Tap automatically
+  }
+
+  function handleCredentialResponse(response) {
+    const responsePayload = decodeJwtResponse(response.credential);
+    console.log("User Info:", responsePayload);
+    // Send this information to your server to authenticate the user
+  }
+
+  function decodeJwtResponse(jwt) {
+    var segments = jwt.split('.');
+    if (segments.length !== 3) {
+      throw new Error('This is not a valid JWT');
+    }
+    var payload = segments[1];
+    var decoded = JSON.parse(atob(payload));
+    return decoded;
+  }
+</script>
+<script>
+  function onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    console.log("User signed in: " + profile.getName());
+    const id_token = googleUser.getAuthResponse().id_token;
+    
+    // Send the ID token to your server for authentication
+    fetch('/your-server-endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id_token })
+    })
+    .then(response => response.json())
+    .then(data => console.log('Authentication successful', data))
+    .catch(error => console.error('Error:', error));
+  }
+</script>
+
 
 
 
