@@ -544,50 +544,42 @@
         setInterval(autoSlide, intervalTime);
       });
   </script>
-  <script>
+<script>
   window.onload = function() {
     google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
-      callback: handleCredentialResponse
+      client_id: '88484073721-md1khjdpg0t8ho4ob18epcsa99ff50cs.apps.googleusercontent.com', // Your Google Client ID
+      callback: handleCredentialResponse, // Use the function to handle the response
     });
-    google.accounts.id.prompt(); // This triggers One Tap automatically
-  }
 
+    // Trigger One Tap automatically when the page loads
+    google.accounts.id.prompt();
+  };
+
+  // This function will handle the response from Google One Tap
   function handleCredentialResponse(response) {
-    const responsePayload = decodeJwtResponse(response.credential);
-    console.log("User Info:", responsePayload);
-    // Send this information to your server to authenticate the user
-  }
+    // The credential (JWT) returned from One Tap
+    const credential = response.credential;
 
-  function decodeJwtResponse(jwt) {
-    var segments = jwt.split('.');
-    if (segments.length !== 3) {
-      throw new Error('This is not a valid JWT');
-    }
-    var payload = segments[1];
-    var decoded = JSON.parse(atob(payload));
-    return decoded;
-  }
-</script>
-<script>
-  function onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log("User signed in: " + profile.getName());
-    const id_token = googleUser.getAuthResponse().id_token;
-    
-    // Send the ID token to your server for authentication
-    fetch('/your-server-endpoint', {
+    // Send the token to your server to verify and authenticate the user
+    fetch('/auth/google/callback', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id_token })
+      body: JSON.stringify({ token: credential }),
     })
     .then(response => response.json())
-    .then(data => console.log('Authentication successful', data))
-    .catch(error => console.error('Error:', error));
+    .then(data => {
+      // Handle the authenticated user's data or session here
+      console.log('Authentication successful:', data);
+      // Redirect or store session as needed
+    })
+    .catch(error => {
+      console.error('Authentication failed:', error);
+    });
   }
 </script>
+
 
 
 
