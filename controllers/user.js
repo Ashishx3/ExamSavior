@@ -97,11 +97,22 @@ async function handleForgotPassword(req, res) {
 
 
     // Send email
-    const transporter = nodemailer.createTransport({ /* SMTP config here */ });
+   const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,           // smtp-relay.brevo.com
+      port: parseInt(process.env.SMTP_PORT), // 587
+      secure: false,                         // false for port 587
+      auth: {
+        user: process.env.SMTP_USER,         // your verified Brevo email
+        pass: process.env.SMTP_PASS,         // your generated Brevo SMTP key
+      },
+    });
+
+    // Step 5: Send email
     await transporter.sendMail({
       to: email,
+      from: process.env.SMTP_USER, // must match the verified sender email
       subject: "Password Reset",
-      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
+      html: `<p>Click <a href="${resetLink}">here</a> to reset your password. This link will expire in 1 hour.</p>`,
     });
 
     return res.render("forgot-password", { message: "Check your email for the reset link." });
