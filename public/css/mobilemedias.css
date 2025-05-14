@@ -121,7 +121,18 @@
   }
 
   @media (max-width: 480px) {
+    .sidebar{
+      height: 34vh;
+    width: 62px;
+    }
+    .ju {
+   
+   
+    font-size: 30px;
+    
+}
     .units {
+
         flex-wrap: nowrap; /* Prevent wrapping */
         overflow-x: auto; /* Enable horizontal scrolling */
         justify-content: flex-start; /* Align units to the start */

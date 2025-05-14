@@ -53,7 +53,7 @@ let parentDiv = document.getElementById("dynamic-content");
         let messageDiv = document.createElement("div");
         messageDiv.classList.add("ju")
         messageDiv.id = "yearMessage";
-        messageDiv.textContent = " Select Your Year !🙃";
+        messageDiv.textContent = " Select Your Year !";
         parentDiv.appendChild(messageDiv);
     }
   }
