@@ -252,7 +252,8 @@
               <label for="cr-1" style="--hue: 32"></label>
               <div class="ci" style="--z: 4">
                 <!-- <h2 class="ch" style="--h: 32; --s: 80%; --l: 90%">What do you know?</h2> -->
-                <img src="/images/Firstwelcomepng.png" alt="welcomeimage">
+                <!-- <img src="/images/neon" alt="welcomeimage"> -->
+                 <video autoplay loop muted playsinline preload="auto"  src="/images/neon.mp4"></video>
               </div>
 
               <input type="radio" name="a" id="cr-2">
@@ -529,7 +530,38 @@
       window.location.href = "/privacy";
     })
 </script>
-      <script >
+
+<script> 
+  // for tv sliding efect 
+
+  document.addEventListener('DOMContentLoaded', function () {
+  let currentIndex = 0;
+  const slideCount = 4; // Adjust to your total number of slides
+  const intervalTime = 2500; // normal delay in ms
+  const extraDelay = 700; // extra 1 second
+
+  function autoSlide() {
+    let slideInput = document.getElementById(`cr-${currentIndex}`);
+    if (slideInput) {
+      slideInput.checked = true;
+    }
+
+    currentIndex++;
+    if (currentIndex > slideCount) {
+      currentIndex = 0;
+    }
+
+    // Set the next timeout with extra delay if at index 0
+    const nextDelay = currentIndex === 0 ? intervalTime + extraDelay : intervalTime;
+    setTimeout(autoSlide, nextDelay);
+  }
+
+  // Start the first call
+  autoSlide();
+});
+
+</script>
+      <!-- <script >
 
       document.addEventListener("DOMContentLoaded", function () {
         let currentIndex = 1; // Start from the first slide
@@ -550,52 +582,10 @@
 
         setInterval(autoSlide, intervalTime);
       });
-  </script>
-<!-- <script>   
-  window.onload = function() {
-    google.accounts.id.initialize({
-      client_id: '88484073721-md1khjdpg0t8ho4ob18epcsa99ff50cs.apps.googleusercontent.com', // Your Google Client ID
-      callback: handleCredentialResponse, // Use the function to handle the response
-    });
-
-    // Trigger One Tap automatically when the page loads
-    google.accounts.id.prompt();
-  };
-
-  // This function will handle the response from Google One Tap
-  function handleCredentialResponse(response) {
-    // The credential (JWT) returned from One Tap
-    const credential = response.credential;
-
-    // Send the token to your server to verify and authenticate the user
-    fetch('/auth/google/callback', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ token: credential }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the authenticated user's data or session here
-      console.log('Authentication successful:', data);
-      // Redirect or store session as needed
-    })
-    .catch(error => {
-      console.error('Authentication failed:', error);
-    });
-  }
-</script> -->
-
-
-
-
+  </script> -->
 
   <script src="js/content.js"></script>
   <script src="js/script.js?v=<%= Date.now() %>"></script>
-
-
-  <!-- <script src="js/script.js"></script> -->
 
 </body>
 

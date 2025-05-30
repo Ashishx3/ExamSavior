@@ -43,7 +43,10 @@
   .switch {
     width: 40px;
     height: 23px;
-    margin-left: 4px;
+    margin-left: 8px;
+      margin-top: 4px;
+   
+
   }
 
     .slider {
@@ -161,7 +164,38 @@
     }
   }
   
-  
+  @media (max-width: 480px) {
+    
+   
+  nav a {
+    font-size: 9px; /* Make text smaller */
+    padding: 4px 6px; /* Reduce padding */
+  }
+
+  .nav-logo {
+    width: 25px; /* Reduce logo size */
+  }
+
+  nav div {
+    margin-right: 5px; /* Reduce right margin */
+  }
+
+  .spannn {
+    padding-left: 5px; /* Reduce spacing */
+  }
+  .switch {
+    width: 38px;
+    height: 22px;
+    margin-left: 8px;
+    margin-top: 4px;
+
+  }
+
+    .slider {
+      width: 40px; /* Reduce width */
+      height: 24px; /* Reduce height */
+    }
+  }  
   @media (max-width: 768px) {
     .cardcontainer {
       flex: 0 0 80%; /* Make it take 80% of the screen */
