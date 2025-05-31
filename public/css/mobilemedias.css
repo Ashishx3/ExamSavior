@@ -18,6 +18,9 @@
 
 /* 460 */
 @media (max-width: 768px) {
+.nut{
+  height: 0vh;
+}
 
   nav {
     height: 50px; /* Make nav bar smaller */

@@ -277,7 +277,7 @@ hr{
 .nut {
   display: block;
   /* border: solid 2px black; */
-  height: 50vh;
+
   width: 58vw;
   justify-content: flex-start;
   align-content: center;
@@ -379,6 +379,7 @@ font-weight: 600;
 .main-img-content-holder {
   display: flex;
   width: 100%;
+  margin-bottom: 100px;
   /* border: 2px solid blanchedalmond; */
 }
 
