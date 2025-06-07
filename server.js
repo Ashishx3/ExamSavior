@@ -112,7 +112,7 @@ app.use('/miniprojects', restrictToLoggedinUserOnly, miniprojectsRoute);
 
 // ✅ For local dev (not used by Vercel)
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(port, () => {
+    app.listen(port, '0.0.0.0', () => {
         console.log(`🚀 Server running locally at http://localhost:${port}`);
     });
 }

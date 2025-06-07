@@ -128,7 +128,7 @@
 @media(max-width: 480px) {
     
 .fieldscontainer button{
-    width: 46%;
+    width: 94%;
 }
 #googlesignup{
     width: 94%;
@@ -190,6 +190,9 @@
               errorDiv.style.display = "none"; // Hide the error after 3 seconds
           }
       }, 4000);
+      document.getElementById("googlesignup").addEventListener("click", function(){
+            window.location.href = "/auth/google";
+        })
        
   </script>
   </body>

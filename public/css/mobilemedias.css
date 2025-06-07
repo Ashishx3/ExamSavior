@@ -171,7 +171,7 @@
     
    
   nav a {
-    font-size: 9px; /* Make text smaller */
+    font-size: 10px; /* Make text smaller */
     padding: 4px 6px; /* Reduce padding */
   }
 
@@ -190,13 +190,13 @@
     width: 38px;
     height: 22px;
     margin-left: 8px;
-    margin-top: 4px;
+    margin-top: 2px;
 
   }
 
     .slider {
       width: 40px; /* Reduce width */
-      height: 24px; /* Reduce height */
+      height: 22px; /* Reduce height */
     }
   }  
   @media (max-width: 768px) {
