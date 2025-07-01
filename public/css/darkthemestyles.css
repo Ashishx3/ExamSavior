@@ -16,6 +16,7 @@
   color: var(--blue-on-darktheme);
 }
 .dark-theme nav {
+  border-bottom: 2px solid var(--blue-on-darktheme);
   background-color: var(--nav-bg-lightback);
 }
 .dark-theme {
@@ -24,7 +25,8 @@
 .dark-theme a{
   color: var(--blue-on-darktheme);
 }
-.dark-theme .specialwel{
+.dark-theme .specialwel, .designedforalltext{
+ 
   color: rgb(38 184 230);
  }
 .dark-theme .wel{
