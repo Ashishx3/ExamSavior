@@ -132,7 +132,7 @@ const firstYearContent = {
 
   iot : [
     { 
-      title: "Basic Civil Engineering", 
+      title: "Basic Ciasdvil Engineering", 
       links: ["link1", "link2", "link3", "link4", "link5"] 
     },
     { 
@@ -441,10 +441,10 @@ const firstYearContent = {
     { title: "Subject 2", links: ["#","#","#","#","#"] },
   ],
   iot: [
-    { title: "Subject 1", links: ["#","#","#","#","#"] },
+    { title: "Subject 1asdaas", links: ["#","#","#","#","#"] },
     { title: "Subject 2", links: ["#","#","#","#","#"] },
     { title: "Subject 2", links: ["#","#","#","#","#"] },
-    { title: "Subject 2", links: ["#","#","#","#","#"] },
+    { title: "tatti 2", links: ["#","#","#","#","#"] },
     { title: "Subject 2", links: ["#","#","#","#","#"] },
     { title: "Subssdasdct 2", links: ["#","#","#","#","#"] },
     { title: "Subject 2", links: ["#","#","#","#","#"] },

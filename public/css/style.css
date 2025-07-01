@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
@@ -96,6 +97,7 @@ nav {
   background-color: #ededed;
   display: flex;
   align-items: center; /* Ensures vertical alignment */
+  overflow: hidden;
   justify-content: space-between;
   height: 75px;
  
@@ -468,8 +470,8 @@ max-width: calc(25% - 20px); */
 }
 
 .sidebarr.sidebar-hidden {
-  display: none;
-}
+  display: block;
+ }
 
 .sidebarr.sidebar-active {
   display: block;
@@ -489,7 +491,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
   font-optical-sizing: auto;
   font-weight: bold;
   font-style: normal;
-  
+  display: block;
   position: fixed;
   top: 50%;
   left: 0;
@@ -607,8 +609,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
   display: block;
 }
 .containerofsubjects {
-  margin-top: 10px;
-  margin-bottom: 100px;
+margin: 36px;
   height: auto;
   width: 100%;
   display: flex;
@@ -638,22 +639,27 @@ font-style: normal;
   background-color: var(--light-bg);
   
 }
+.cardcontainer div:first-child {
+    /* text-decoration: underline; */
+    color: #000000;
+    font-size: medium;
+}
 .units {
   display: flex;
 
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 13px;
   justify-content: center;
 }
 .unit {
-  background-color: rgb(130, 117, 227);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+    background-color: rgb(130, 117, 227);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
 .unit:hover {
   cursor: pointer;
@@ -802,3 +808,37 @@ color: var(--light-text);
 
 }
 
+.designedforalltext{
+  text-align: center;
+  font-family: 'poppins', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 6px;
+  font-weight: 600;
+}
+
+
+@media (max-width: 1000px){
+
+.cardcontainer{
+font-size: smaller;
+
+        background-color: rgb(224, 223, 223);
+      box-shadow: 0 2px 4px rgb(245 245 245 / 30%);
+        border: 2px solid rgb(201 201 201);
+        color: black;
+}
+.units{
+  gap: 8px;
+}
+.unit{
+  border-radius: 5px;
+}
+
+
+}
+
+.ass{
+      width: 100vw;
+    height: 100vh;
+   
+    padding: 10px;
+}

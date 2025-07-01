@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AIDS Page</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/mobilemedias.css">
+  <link rel="stylesheet" href="../../css/darkthemestyles.css">
+
+  <link rel="stylesheet" href="../../css/footerandfollowus.css">
+  <link rel="stylesheet" href="../../css/otherfeaturesservice.css">
+  <link rel="stylesheet" href="../../css/sliderstvs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+</head>
+
+<body>
+
+  <%- include('./navbar') %>
+    <%- include('./sidebarforaids') %>
+      <h1 class="designedforalltext">Welcome to the AIDS Section</h1>
+
+
+      <!-- Fixed Tabs -->
+
+
+
+      <hr>
+
+      <!-- Dynamic Content -->
+
+      <% if (section==='firstyr' ) { %>
+        <% include('/firstyr/index') %>
+          <% } else if (section==='secondyr' ) { %>
+            <% include('aids/secondyr/index') %>
+              <% } else if (section==='thirdyr' ) { %>
+                <% include('aids/thirdyr/index') %>
+                  <% } else if (section==='fourthyr' ) { %>
+                    <% include('aids/fourthyr/index') %>
+                      <% } else { %>
+                        <h2 class="designedforalltext">Please select your year</h2>
+                        <% } %>
+
+                          </div>
+                          <script src="js/g.js"></script>
+</body>
+
+</html>

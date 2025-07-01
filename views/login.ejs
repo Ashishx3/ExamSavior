@@ -114,6 +114,13 @@
 }
 }
 
+.fieldscontainer input:invalid {
+  border: 2px solid red;
+}
+.fieldscontainer input:valid {
+  border: 2px solid green;
+}
+
 
 
 span{
@@ -215,7 +222,14 @@ transform: translateY(-10%);
             <form action="/user/login" method="POST">
        
                 <label for="">Email</label>
-                <input placeholder="example@gmail.com" type="text" required name="email">
+              <input 
+  placeholder="example@gmail.com" 
+  type="text" 
+  required 
+  name="email"
+  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+  title="Please enter a valid email address (e.g. user@example.com)">
+
                 <label for="">Password</label>
                 <input placeholder="Enter your password" type="text" required name="password">
                  <!-- <a style="color: black; font-size: small;"  href="/forgot-password">Forgot Password?</a> -->
@@ -346,6 +360,21 @@ transform: translateY(-10%);
             window.location.href = "/auth/google";
         })
     </script>
+
+
+<script>
+document.querySelector("form").addEventListener("submit", function (e) {
+  const emailInput = document.querySelector("input[name='email']");
+  const email = emailInput.value.trim();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailRegex.test(email)) {
+    e.preventDefault(); // Stop form submission
+    alert("Invalid email format. Please enter a valid email address.");
+    emailInput.focus();
+  }
+});
+</script>
 
 </body>
 

@@ -14,8 +14,17 @@
     font-weight: bold;
     font-style: normal;
     margin-right: 35px;
+ 
 }
 
+#privac{
+    color: black;
+}
+
+.dark-theme #privac {
+
+    color: white;
+}
 .spancont:hover {
     text-decoration: underline;
     cursor: pointer;

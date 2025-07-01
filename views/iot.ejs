@@ -1,0 +1,42 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>AIDS Page</title>
+       <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mobilemedias.css">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+  </head>
+  <body>
+
+      <%- include('./navbar') %>
+      <%- include('./sidebarforiot') %>
+    <h1 class="designedforalltext">Welcome to the iot Section</h1>
+
+
+    <!-- Fixed Tabs -->
+
+
+
+    <hr>
+
+    <!-- Dynamic Content -->
+  
+<% if (section === 'firstyr') { %>
+  <% include('/firstyr/index') %>
+<% } else if (section === 'secondyr') { %>
+  <% include('iot/secondyr/index') %>
+<% } else if (section === 'thirdyr') { %>
+  <% include('iot/thirdyr/index') %>
+<% } else if (section === 'fourthyr') { %>
+  <% include('iot/fourthyr/index') %>
+<% } else { %>
+  <h2 class="designedforalltext">Please select your year</h2>
+<% } %>
+
+    </div>
+  </body>
+  </html>

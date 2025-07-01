@@ -1,0 +1,22 @@
+// routes/notes.js
+const express = require('express');
+const router = express.Router();
+const yearContent = require('../scripts/content');
+
+router.get('/:year/:branch', (req, res) => {
+  const { year, branch } = req.params;
+
+  // Check if data exists
+  if (yearContent[year] && yearContent[year][branch]) {
+    res.render(`notes/${year}/${branch}`, {
+      subjects: yearContent[year][branch],
+      branch,
+  year,
+  yearContent: yearContent[year]
+    });
+  } else {
+    res.status(404).send('Page not found');
+  }
+});
+
+module.exports = router;

@@ -28,7 +28,6 @@ const miniprojectsRoute = require('./routes/miniprojects');
 const privacypolicyroute = require('./routes/privacy-policy')
 
 
-// const authRoutesforforgotpass = require('./routes/authforpass');
 
 
 // DB Pool
@@ -88,7 +87,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
 
-// app.use('/', authRoutesforforgotpass); // or use '/auth' if you want it to be at /auth/forgot-password
 
 // Auth status check
 app.use(checkAuthStatus);
@@ -110,9 +108,28 @@ app.use('/tts', restrictToLoggedinUserOnly, ttsRoute);
 app.use('/lastyear', restrictToLoggedinUserOnly, lastyearRoute);
 app.use('/miniprojects', restrictToLoggedinUserOnly, miniprojectsRoute);
 
+
+
+// AIDS
+const allroutesofaids = require('./routes/aidsRoutes/allyearofaids.js')
+app.use('/aids', allroutesofaids);
+//cse
+const allroutesofcse = require('./routes/cseRoutes/allyearofcse.js')
+app.use('/cse', allroutesofcse);
+//iot
+const allroutesofiot = require('./routes/iotRoutes/allyearofiot.js')
+app.use('/iot', allroutesofiot);
+//aiml
+const allroutesofaiml = require('./routes/aimlRoutes/allyearofaiml.js')
+app.use('/aiml', allroutesofaiml);
+
+
+
+
+
 // ✅ For local dev (not used by Vercel)
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(port, '0.0.0.0', () => {
+    app.listen(port, '0.0.0.0'  , () => {
         console.log(`🚀 Server running locally at http://localhost:${port}`);
     });
 }

@@ -1,0 +1,42 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>AIML Page</title>
+       <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mobilemedias.css">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+  </head>
+  <body>
+
+      <%- include('./navbar') %>
+      <%- include('./sidebarforaiml') %>
+    <h1 class="designedforalltext">Welcome to the AIML Section</h1>
+
+
+    <!-- Fixed Tabs -->
+
+
+
+    <hr>
+
+    <!-- Dynamic Content -->
+  
+<% if (section === 'firstyr') { %>
+  <% include('/firstyr/index') %>
+<% } else if (section === 'secondyr') { %>
+  <% include('aiml/secondyr/index') %>
+<% } else if (section === 'thirdyr') { %>
+  <% include('aiml/thirdyr/index') %>
+<% } else if (section === 'fourthyr') { %>
+  <% include('aiml/fourthyr/index') %>
+<% } else { %>
+  <h2 class="designedforalltext">Please select your year</h2>
+<% } %>
+
+    </div>
+  </body>
+  </html>
