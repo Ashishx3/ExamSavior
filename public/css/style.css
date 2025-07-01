@@ -506,6 +506,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
   border-radius: 0 10px 10px 0; /* Top-left: 0, Top-right: 10px, Bottom-right: 10px, Bottom-left: 0 */
 }
 
+
 .sidebar:hover {
   width: 250px;
 }
@@ -566,6 +567,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
 /* /////////////////////////////////////// */
 
 .sidebar ul li a {
+  font-family: 'Poppins';
   position: relative;
   display: flex;
   align-items: center;
@@ -588,7 +590,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
   overflow: hidden; /* Prevent text from overflowing */
   font-size: 16px;
   font-weight: 500;
-  text-transform: uppercase;
+  
   letter-spacing: 0.6px;
   white-space: nowrap;
   transition: opacity 0.3s ease, width 0.3s ease;
@@ -814,6 +816,7 @@ color: var(--light-text);
   padding: 6px;
   font-weight: 600;
 }
+
 
 
 @media (max-width: 1000px){

@@ -125,12 +125,16 @@
   }
 
   }
+ @media (max-width: 568px) {
+  .sidebar{
+  
+    width: 62px;
+    height: 24vh
+    }
+  }
 
   @media (max-width: 480px) {
-    .sidebar{
-      height: 34vh;
-    width: 62px;
-    }
+    
     .ju {
    
    
@@ -156,10 +160,12 @@
 
 
   @media (max-width: 768px) {
-    .cardcontainer {
-      flex: 0 0 80%; /* Take 80% width on smaller screens */
-      width: auto; /* Allow flexible resizing */
+     .sidebar{
+  
+    width: 62px;
+    height: 40vh
     }
+    
     
     .unit {
       width: 100%; /* Make buttons full width */
@@ -226,7 +232,7 @@
       background-color: rgb(130, 117, 227);
       color: white;
       padding: 6px 12px;
-      border-radius: 15px;
+      border-radius: 5px;
       font-size: 12px;
       font-weight: bold;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
