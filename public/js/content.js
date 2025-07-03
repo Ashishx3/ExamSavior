@@ -1,10 +1,16 @@
 console.log("content script loaded successfully!")
 
-const firstYearContent = {
+const firstYearContent = {  
   aids: [
     { 
       title: "Basic Civil Engineering", 
-      links: ["", "link2", "link3", "link4", "link5"] 
+       links: [
+        { view: "https://linkvertise.com/view1", download: "/notes/unit1.pdf" },
+        { view: "https://linkvertise.com/view2", download: "/notes/unit2.pdf" },
+        { view: "https://linkvertise.com/view3", download: "/notes/unit3.pdf" },
+        { view: "https://linkvertise.com/view4", download: "/notes/unit4.pdf" },
+        { view: "https://linkvertise.com/view5", download: "/notes/unit5.pdf" }
+      ]
     },
     { 
       title: "Basic Mechanical Engineering", 

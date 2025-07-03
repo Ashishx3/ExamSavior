@@ -111,11 +111,11 @@ function generateas(yearContent, branch) {
         <div class="cardcontainer">
           <div>${subject}</div>
           <div class="units">
-            <span class="unit" onclick="window.open('${links[0]}', '_blank')">Unit 1</span>
-            <span class="unit" onclick="window.open('${links[1]}', '_blank')">Unit 2</span>
-            <span class="unit" onclick="window.open('${links[2]}', '_blank')">Unit 3</span>
-            <span class="unit" onclick="window.open('${links[3]}', '_blank')">Unit 4</span>
-            <span class="unit" onclick="window.open('${links[4]}', '_blank')">Unit 5</span>
+            <span class="unit" data-view="${links[0].view}" data-download="${links[0].download}" onclick="openPDFLinks(this)">Unit 1</span>
+          <span class="unit" data-view="${links[1].view}" data-download="${links[1].download}" onclick="openPDFLinks(this)">Unit 2</span>
+          <span class="unit" data-view="${links[2].view}" data-download="${links[2].download}" onclick="openPDFLinks(this)">Unit 3</span>
+          <span class="unit" data-view="${links[3].view}" data-download="${links[3].download}" onclick="openPDFLinks(this)">Unit 4</span>
+          <span class="unit" data-view="${links[4].view}" data-download="${links[4].download}" onclick="openPDFLinks(this)">Unit 5</span>
           </div>
         </div>`;
     }
@@ -123,3 +123,17 @@ function generateas(yearContent, branch) {
     content += `</div>`;
     return content;
   }
+  function openPDFLinks(el) {
+  const viewLink = el.dataset.view;
+  const downloadLink = el.dataset.download;
+
+  document.getElementById('viewpdf').href = viewLink;
+  document.getElementById('downloadpdf').href = downloadLink;
+
+  document.getElementById('btncontains').style.display = 'block';
+  document.getElementById('mainsf').classList.add('blur');
+      document.getElementById("closeBtn").addEventListener("click", () => {
+  document.getElementById("mainsf").classList.remove("blur");
+  document.getElementById("btncontains").style.display = "none";
+});
+}

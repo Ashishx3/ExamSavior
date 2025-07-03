@@ -125,11 +125,26 @@
   }
 
   }
- @media (max-width: 568px) {
-  .sidebar{
+   @media (min-width:768px) and (max-width: 900px) {
+     .sidebar{
+  
+    
+    height: 60vh
+    }}
+   @media (max-width: 768px) {
+     .sidebar{
   
     width: 62px;
-    height: 24vh
+    height: 55vh
+    }}
+ @media (max-width: 568px) {
+  .designedforalltext{
+    font-size: larger;
+  }
+  .sidebar{
+  
+    /* width: 62px; */
+    height: 45vh
     }
   }
 
@@ -141,31 +156,27 @@
     font-size: 30px;
     
 }
-    .units {
 
-        flex-wrap: nowrap; /* Prevent wrapping */
-        overflow-x: auto; /* Enable horizontal scrolling */
-        justify-content: flex-start; /* Align units to the start */
-        padding: 10px; /* Add padding for better spacing */
-        gap: 5px; /* Reduce gap for smaller screens */
+    .units {
+       
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 2px;
+        gap: 7px;
     }
 
     .unit {
+      height: 29px;
         flex: 0 0 auto; /* Prevent shrinking */
         white-space: nowrap; /* Ensure text doesn’t break */
-        min-width: 80px; /* Set a minimum width for better visibility */
+        min-width: 70px; /* Set a minimum width for better visibility */
     }
 }
   /* ///////////////////////////cardss      of other featuresz */
 
 
   @media (max-width: 768px) {
-     .sidebar{
-  
-    width: 62px;
-    height: 40vh
-    }
-    
+
     
     .unit {
       width: 100%; /* Make buttons full width */
@@ -206,27 +217,9 @@
     }
   }  
   @media (max-width: 768px) {
-    .cardcontainer {
-      flex: 0 0 80%; /* Make it take 80% of the screen */
-      width: auto; 
-      height: auto; /* Adjust height automatically */
-      padding: 10px; /* Add some padding */
-    }
-  
-    .units {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columns */
-      gap: 7px; /* Space between buttons */
-      justify-content: center; /* Center the buttons */
-      padding: 8px 10px; /* Prevent sticking to page edges */
-    }
-  
-    /* Adjust the last two buttons to center */
-    .unit:nth-child(4),
-    .unit:nth-child(5) {
-      grid-column: span 1; /* Make each take one column */
-      justify-self: center; /* Center align them */
-    }
+   
+   
+
   
     .unit {
       background-color: rgb(130, 117, 227);

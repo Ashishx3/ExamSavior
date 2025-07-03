@@ -17,21 +17,25 @@
 
 </head>
 <body>
+  <div id="mainsf" > 
      <%- include('../../navbar') %>
         <%- include('../../sidebarforaids') %>
+        <div>
       <div id="ass">
 
       </div>
-
+</div>
+    </div>
+     <%- include('../../popup') %>
    
-
+   <script src="../../../js/content.js"></script>
+      <script src="../../../js/g.js"></script>
       <script>
 
       const branchs = localStorage.getItem("selectedBranch");
         
       sidebar_selected_year_second()
       
-      console.log("Branch loaded from localStorage:", branchs);
 
 </script>
 </body>

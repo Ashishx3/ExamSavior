@@ -160,9 +160,9 @@
 }
 .dark-theme .cardcontainer  {
   color: white;
-     background-color: rgb(69 69 69);
-      box-shadow: 0 2px 3px rgb(245 245 245 / 30%);
-        border: 1px solid rgb(116, 116, 116);
+     background-color: rgb(28, 27, 27);
+      box-shadow: 0 2px 3px var(--light-bg);
+        border: 1px solid var(--blue-on-darktheme);
     }
     .dark-theme .cardcontainer div:first-child{
       color: white;

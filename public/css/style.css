@@ -39,6 +39,7 @@ html {
 
 
 body {
+  overflow-y: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--light-bg);
   color: var(--light-text);
@@ -495,7 +496,7 @@ transition: margin-left 0.3s ease; /* Optional: Smooth transition for margin shi
   position: fixed;
   top: 50%;
   left: 0;
-  height: 50vh;
+  height: 55vh;
   width: 75px;
   background: #333;
   overflow: hidden;
@@ -625,6 +626,8 @@ margin: 36px;
   flex: 0 0 calc(25% - 80px); /* 25% width minus gap for spacing */
   width: 100px; /* Can be removed if you want flexible resizing */
   height: 200px;
+         
+          border: 2px solid rgb(30, 30, 30);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -638,7 +641,7 @@ margin: 36px;
 font-size: larger;
 font-weight: 550;
 font-style: normal;
-  background-color: var(--light-bg);
+  background-color: rgb(243 250 255);
   
 }
 .cardcontainer div:first-child {
@@ -679,46 +682,36 @@ font-style: normal;
 
 /* ///////////////////// */
 
-@media (max-width: 768px) {
+
+
+@media (max-width: 368px) {
+
+
   .cardcontainer {
-    flex: 0 0 80%; /* Take 80% width on smaller screens */
-    width: auto; /* Allow flexible resizing */
-  }
-  
-  .units {
-    flex-direction: column; /* Stack buttons in a single column */
-    gap: 8px; /* Reduce gap for better spacing */
-  }
-  
-  .unit {
-    width: 100%; /* Make buttons full width */
-    text-align: center;
+    flex: 0 0 50%; /* Take 80% width on smaller screens */
+    width: 258px; /* Allow flexible resizing */
+    height: 158px;
   }
 }
 
-
 @media (max-width: 768px) {
-  .cardcontainer {
-    flex: 0 0 80%; /* Make it take 80% of the screen */
-    width: auto; 
-    height: auto; /* Adjust height automatically */
-    padding: 10px; /* Add some padding */
-  }
+
 
   .units {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 8px; /* Space between buttons */
-    justify-content: center; /* Center the buttons */
-    padding: 0 10px; /* Prevent sticking to page edges */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    justify-content: center;
+    padding: 8px 10px;
   }
 
-  /* Adjust the last two buttons to center */
-  .unit:nth-child(4),
-  .unit:nth-child(5) {
-    grid-column: span 1; /* Make each take one column */
-    justify-self: center; /* Center align them */
+  .units .unit:nth-child(4),
+  .units .unit:nth-child(5) {
+    grid-column: span 1;
+    justify-self: center;
   }
+
+  
 
   .unit {
     background-color: rgb(130, 117, 227);
@@ -816,17 +809,16 @@ color: var(--light-text);
   padding: 6px;
   font-weight: 600;
 }
-
-
-
-@media (max-width: 1000px){
-
-.cardcontainer{
+@media (min-width: 769px) and (max-width: 1112px) {
+  /* Styles here will apply only between 600px and 1000px screen width */
+  .cardcontainer{
 font-size: smaller;
+background-color:rgb(243 250 255);
 
-        background-color: rgb(224, 223, 223);
+        flex: 0 0 40%;
+     
       box-shadow: 0 2px 4px rgb(245 245 245 / 30%);
-        border: 2px solid rgb(201 201 201);
+     
         color: black;
 }
 .units{
@@ -835,13 +827,143 @@ font-size: smaller;
 .unit{
   border-radius: 5px;
 }
-
-
 }
+
+@media (min-width: 1112px) and (max-width: 1412px) {
+  .cardcontainer{
+font-size: smaller;
+background-color:rgb(243 250 255);
+
+        flex: 0 0 25%;
+     
+      box-shadow: 0 2px 4px rgb(245 245 245 / 30%);
+     
+        color: black;
+}
+}
+
+@media (max-width: 768px) {
+  .cardcontainer {
+    flex: 0 0 40%; /* Take 80% width on smaller screens */
+    background-color:rgb(243 250 255);
+    width: auto; /* Allow flexible resizing */
+    height: 180px;
+  }
+  
+  .unit {
+    width: 100%; /* Make buttons full width */
+    text-align: center;
+  }
+}
+
+
+
+
 
 .ass{
       width: 100vw;
     height: 100vh;
-   
+   margin-bottom: 30px;
     padding: 10px;
 }
+.dashboard {
+      padding-left: 2px;
+
+      height: 30px;
+      width: 30px;
+      border-radius: 10px;
+    }
+
+
+        .blur {
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    /* Overlay button container */
+   @keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#btncontains {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 9999;
+  text-align: center;
+  min-width: 300px;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+#btncontains.show {
+  display: block;
+}
+#btncontains .bu {
+  
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #007BFF;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+#closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+
+}
+
+#closeBtn:hover{
+  border-radius: 40px;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+    transition: color 0.2s ease;
+}
+
+#btncontains .bu:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+#btncontains button:active {
+  transform: scale(0.97);
+}
+
+.mainsf{
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+    .btn-pdf {
+      margin-top: 20px;
+    }
