@@ -350,7 +350,7 @@ const firstYearContent = {
  const secondYearContent = {
     aids: [
       { 
-        title: "Data Structures", 
+        title: "Data Structuresforsecond", 
         links: ["link1", "link2", "link3", "link4", "link5"] 
       },
       { 
