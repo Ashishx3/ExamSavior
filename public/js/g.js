@@ -57,6 +57,7 @@ const objforyears = {
     4 : fourthYearContent
 }
 
+console.log(objforyears, branch, yearContent)
 function sidebar_selected_year_first(){
 
  let furstcontent = document.getElementById("ass") ;
