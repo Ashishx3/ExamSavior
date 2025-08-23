@@ -820,49 +820,109 @@ const firstYearContent = {
 };
 
  const secondYearContent = {
-    aids: [
-      { 
-        title: "Data Structuresforsecond", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Technical Communication", 
-        links: ["https://www.youtube.com/", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Introduction to Probability For DS", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Artificial Intelligence", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Object Oriented Progg.", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Mathematics 3", 
-        links: ["https://drive.google.com/file/d/1Kr3u7MNK2fi-56_AhAv22rKX8pepJFVy/view?usp=sharing", "https://drive.google.com/file/d/1GlihO-r51VknbacBFdmM3NjP3_sR1wNg/view?usp=sharing", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Database Management Systems", 
-        links: ["https://drive.google.com/file/d/1yPyBDtgNYRZjHnhiU-Kzcwny0SJEptGW/view?usp=sharing", "https://drive.google.com/file/d/158-W5upXA1OnBmp5HTd2KlNPbSaZTTEL/view?usp=sharing", "https://drive.google.com/file/d/17IiGzgZBtqfVfsNSVIQFv8XjmvRvcXaF/view?usp=sharing", "link4", "link5"] 
-      },
-      { 
-        title: "Software Engineering with Agile Methodology", 
-        links: ["https://drive.google.com/file/d/14EroMxM8PXIG7Gp3wj6D9-pEckITjBTY/view?usp=sharing", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Data Science", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      },
-      { 
-        title: "Operating Systems", 
-        links: ["link1", "link2", "link3", "link4", "link5"] 
-      }
-    ],
-  
+   aids: [
+  { 
+    title: "Data Structures", 
+    links: [
+      { view: "link1", download: "link1" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Technical Communication", 
+    links: [
+      { view: "https://www.youtube.com/", download: "https://www.youtube.com/" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Introduction to Probability For DS", 
+    links: [
+      { view: "link1", download: "link1" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Artificial Intelligence", 
+    links: [
+      { view: "link1", download: "link1" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Object Oriented Progg.", 
+    links: [
+      { view: "link1", download: "link1" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Mathematics 3", 
+    links: [
+      { view: "https://drive.google.com/file/d/1Kr3u7MNK2fi-56_AhAv22rKX8pepJFVy/view?usp=sharing", download: "https://drive.google.com/file/d/1Kr3u7MNK2fi-56_AhAv22rKX8pepJFVy/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/1GlihO-r51VknbacBFdmM3NjP3_sR1wNg/view?usp=sharing", download: "https://drive.google.com/file/d/1GlihO-r51VknbacBFdmM3NjP3_sR1wNg/view?usp=sharing" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Database Management Systems", 
+    links: [
+      { view: "https://drive.google.com/file/d/1yPyBDtgNYRZjHnhiU-Kzcwny0SJEptGW/view?usp=sharing", download: "https://drive.google.com/file/d/1yPyBDtgNYRZjHnhiU-Kzcwny0SJEptGW/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/158-W5upXA1OnBmp5HTd2KlNPbSaZTTEL/view?usp=sharing", download: "https://drive.google.com/file/d/158-W5upXA1OnBmp5HTd2KlNPbSaZTTEL/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/17IiGzgZBtqfVfsNSVIQFv8XjmvRvcXaF/view?usp=sharing", download: "https://drive.google.com/file/d/17IiGzgZBtqfVfsNSVIQFv8XjmvRvcXaF/view?usp=sharing" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Software Engineering with Agile Methodology", 
+    links: [
+      { view: "https://drive.google.com/file/d/14EroMxM8PXIG7Gp3wj6D9-pEckITjBTY/view?usp=sharing", download: "https://drive.google.com/file/d/14EroMxM8PXIG7Gp3wj6D9-pEckITjBTY/view?usp=sharing" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  },
+  { 
+    title: "Data Science", 
+    links: [
+      { view: "https://drive.google.com/file/d/1gXBvRXeePM-V-eKokyk9pxi99qw55XJJ/view?usp=sharing", download: "https://drive.google.com/file/d/1gXBvRXeePM-V-eKokyk9pxi99qw55XJJ/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/19sHFyPLs-Aa3XlzxOnOJ0h8yDhSOFwcm/view?usp=sharing", download: "https://drive.google.com/file/d/19sHFyPLs-Aa3XlzxOnOJ0h8yDhSOFwcm/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/1B1XlgdwDPnnAoXLCoFnJjUpDSCS9nL9s/view?usp=sharing", download: "https://drive.google.com/file/d/1B1XlgdwDPnnAoXLCoFnJjUpDSCS9nL9s/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/1e2hnQcTZGEoBeUjZJlef6Iob6LxUZcu3/view?usp=sharing", download: "https://drive.google.com/file/d/1e2hnQcTZGEoBeUjZJlef6Iob6LxUZcu3/view?usp=sharing" },
+      { view: "https://drive.google.com/file/d/1AVMQ7e2guNfvVEwJwgwWJBuDk8sU6yhM/view?usp=sharing", download: "https://drive.google.com/file/d/1AVMQ7e2guNfvVEwJwgwWJBuDk8sU6yhM/view?usp=sharing" }
+    ]
+  },
+  { 
+    title: "Operating Systems", 
+    links: [
+      { view: "link1", download: "link1" },
+      { view: "link2", download: "link2" },
+      { view: "link3", download: "link3" },
+      { view: "link4", download: "link4" },
+      { view: "link5", download: "link5" }
+    ]
+  }
+]
+,
     aiml: [
       { 
         title: "Data Structures", 
